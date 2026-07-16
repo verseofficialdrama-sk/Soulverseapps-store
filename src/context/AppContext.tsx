@@ -21,6 +21,11 @@ interface AppContextProps {
   currentUser: UserProfile | null;
   registerUser: (name: string, email: string) => Promise<boolean>;
   loginUser: (email: string) => Promise<boolean>;
+  loginAdmin: (email: string, passcode: string) => Promise<boolean>;
+  adminEmail: string;
+  setAdminEmail: (email: string) => void;
+  adminPasscode: string;
+  setAdminPasscode: (passcode: string) => void;
   logoutUser: () => void;
   verifyEmail: () => void;
   resetPassword: (email: string) => Promise<string>;
@@ -51,6 +56,8 @@ interface AppContextProps {
   setSelectedCategorySlug: (slug: string) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  adminLoginOpen: boolean;
+  setAdminLoginOpen: (open: boolean) => void;
   
   // CRUD operations (Admin Panel)
   saveProduct: (product: Product) => void;
@@ -118,20 +125,26 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return data ? JSON.parse(data) : [];
   });
 
-  // Current logged in user profile (admin by default or loaded from session)
+  // Web Admin Credentials
+  const [adminEmail, setAdminEmail] = useState<string>(() => {
+    return localStorage.getItem('soul_admin_email') || 'admin@soulverseapps.com';
+  });
+  const [adminPasscode, setAdminPasscode] = useState<string>(() => {
+    return localStorage.getItem('soul_admin_passcode') || 'admin@soulverse2026';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('soul_admin_email', adminEmail);
+  }, [adminEmail]);
+
+  useEffect(() => {
+    localStorage.setItem('soul_admin_passcode', adminPasscode);
+  }, [adminPasscode]);
+
+  // Current logged in user profile (loaded from session or null)
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(() => {
     const data = localStorage.getItem('soul_current_user');
-    if (data) return JSON.parse(data);
-    // Pre-create an admin session or leave null for user login experience
-    return {
-      id: 'admin-1',
-      name: 'Soulverse Admin',
-      email: 'admin@soulverseapps.com',
-      role: 'admin',
-      isVerified: true,
-      wishlist: [],
-      purchasedProducts: ['p1', 'p2']
-    };
+    return data ? JSON.parse(data) : null;
   });
 
   const [cart, setCart] = useState<{ product: Product; quantity: number }[]>(() => {
@@ -150,6 +163,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [activeTab, setActiveTab] = useState('Home');
   const [selectedCategorySlug, setSelectedCategorySlug] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [adminLoginOpen, setAdminLoginOpen] = useState(false);
   
   // Notifications
   const [notifications, setNotifications] = useState<string[]>([]);
@@ -184,12 +198,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Auth Functions
   const registerUser = async (name: string, email: string): Promise<boolean> => {
-    const role = email.toLowerCase().includes('admin') ? 'admin' : 'user';
+    const lowerEmail = email.toLowerCase();
+    if (lowerEmail === adminEmail.toLowerCase() || lowerEmail.includes('admin')) {
+      throw new Error('This email address is reserved for system administration. Standard registrations are not permitted with this email.');
+    }
     const profile: UserProfile = {
       id: 'usr-' + Math.random().toString(36).substr(2, 9),
       name,
       email,
-      role,
+      role: 'user',
       isVerified: false,
       wishlist: [],
       purchasedProducts: []
@@ -200,20 +217,40 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const loginUser = async (email: string): Promise<boolean> => {
-    // If Admin email, login as admin
-    const isAdmin = email.toLowerCase() === 'admin@soulverseapps.com' || email.toLowerCase().includes('admin');
+    const lowerEmail = email.toLowerCase();
+    if (lowerEmail === adminEmail.toLowerCase() || lowerEmail.includes('admin')) {
+      throw new Error('This administrative account is restricted. Please authenticate using the Web Admin Gateway.');
+    }
     const profile: UserProfile = {
-      id: isAdmin ? 'admin-1' : 'usr-' + Math.random().toString(36).substr(2, 9),
-      name: isAdmin ? 'Soulverse Admin' : email.split('@')[0],
+      id: 'usr-' + Math.random().toString(36).substr(2, 9),
+      name: email.split('@')[0],
       email,
-      role: isAdmin ? 'admin' : 'user',
+      role: 'user',
       isVerified: true,
       wishlist: [],
-      purchasedProducts: isAdmin ? ['p1', 'p2', 'p3', 'p4'] : []
+      purchasedProducts: []
     };
     setCurrentUser(profile);
     addNotification(`Welcome back, ${profile.name}!`);
     return true;
+  };
+
+  const loginAdmin = async (email: string, passcode: string): Promise<boolean> => {
+    if (email.toLowerCase() === adminEmail.toLowerCase() && passcode === adminPasscode) {
+      const profile: UserProfile = {
+        id: 'admin-1',
+        name: 'Soulverse Admin',
+        email: adminEmail,
+        role: 'admin',
+        isVerified: true,
+        wishlist: [],
+        purchasedProducts: ['p1', 'p2', 'p3', 'p4']
+      };
+      setCurrentUser(profile);
+      addNotification('Web Admin authenticated successfully. Core systems online.');
+      return true;
+    }
+    return false;
   };
 
   const logoutUser = () => {
@@ -510,10 +547,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     <AppContext.Provider value={{
       products, categories, services, portfolio, blogPosts, coupons, settings,
       currentUser, registerUser, loginUser, logoutUser, verifyEmail, resetPassword, updateProfile,
+      loginAdmin, adminEmail, setAdminEmail, adminPasscode, setAdminPasscode,
       cart, addToCart, removeFromCart, updateCartQuantity, clearCart, appliedCoupon, applyCouponCode, removeCouponCode,
       wishlist, toggleWishlist,
       orders, createOrder,
-      activeTab, setActiveTab, selectedCategorySlug, setSelectedCategorySlug, searchQuery, setSearchQuery,
+      activeTab, setActiveTab, selectedCategorySlug, setSelectedCategorySlug, searchQuery, setSearchQuery, adminLoginOpen, setAdminLoginOpen,
       saveProduct, deleteProduct, saveCategory, deleteCategory, saveService, deleteService,
       saveBlogPost, deleteBlogPost, savePortfolio, deletePortfolio, saveCoupon, deleteCoupon, updateSettings, addReview,
       notifications, addNotification, clearNotifications

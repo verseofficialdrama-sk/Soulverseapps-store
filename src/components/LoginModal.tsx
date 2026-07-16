@@ -164,9 +164,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
           {activeForm === 'login' ? (
             <>
               <p className="font-medium text-slate-600">Don't have a profile yet? <button onClick={() => setActiveForm('register')} className="text-indigo-600 font-black uppercase text-[10px] tracking-widest hover:underline">Register</button></p>
-              <div className="text-[10px] text-slate-500 bg-slate-50 p-2 border border-slate-200 rounded-none font-semibold mt-2">
-                Quick tip: Enter email <code>admin@soulverseapps.com</code> to trigger Admin access.
-              </div>
             </>
           ) : activeForm === 'register' ? (
             <p className="font-medium text-slate-600">Already a member? <button onClick={() => setActiveForm('login')} className="text-indigo-600 font-black uppercase text-[10px] tracking-widest hover:underline">Sign In</button></p>

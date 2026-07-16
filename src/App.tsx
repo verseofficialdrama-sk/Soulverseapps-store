@@ -8,6 +8,7 @@ import { ProductDetailsModal } from './components/ProductDetailsModal';
 import { CartDrawer } from './components/CartDrawer';
 import { LoginModal } from './components/LoginModal';
 import { AdminDashboard } from './components/AdminDashboard';
+import { AdminLoginModal } from './components/AdminLoginModal';
 import { ServicesSection } from './components/ServicesSection';
 import { PortfolioSection } from './components/PortfolioSection';
 import { BlogSection } from './components/BlogSection';
@@ -27,12 +28,36 @@ const AppContent: React.FC = () => {
   const { 
     activeTab, setActiveTab, products, categories, 
     selectedCategorySlug, setSelectedCategorySlug, 
-    searchQuery, setSearchQuery, blogPosts
+    searchQuery, setSearchQuery, blogPosts,
+    adminLoginOpen, setAdminLoginOpen
   } = useApp();
 
   const [cartOpen, setCartOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  // Hidden Trigger: URL Search Params Detector
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('webadmin') === 'true' || params.get('portal') === 'secure') {
+      setAdminLoginOpen(true);
+      // Clean up search parameters silently to maintain secrecy
+      const cleanUrl = window.location.pathname + window.location.hash;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+  }, [setAdminLoginOpen]);
+
+  // Hidden Trigger: Keyboard Shortcuts (Ctrl + Alt + A)
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        setAdminLoginOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [setAdminLoginOpen]);
 
   // Filter products based on selected tab/search query
   const filteredProducts = products.filter(p => {
@@ -366,6 +391,11 @@ const AppContent: React.FC = () => {
       {/* Auth Gate modal */}
       {loginOpen && (
         <LoginModal onClose={() => setLoginOpen(false)} />
+      )}
+
+      {/* Web Admin Secure Gateway modal */}
+      {adminLoginOpen && (
+        <AdminLoginModal />
       )}
 
       {/* Product specs modal lightbox */}

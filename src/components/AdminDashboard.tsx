@@ -13,10 +13,37 @@ export const AdminDashboard: React.FC = () => {
     coupons, saveCoupon, deleteCoupon,
     blogPosts, saveBlogPost, deleteBlogPost,
     services, saveService, deleteService,
-    orders, settings, updateSettings, addNotification
+    orders, settings, updateSettings, addNotification,
+    currentUser, adminEmail, setAdminEmail, adminPasscode, setAdminPasscode
   } = useApp();
 
+  // Strict Admin Guard Check
+  if (!currentUser || currentUser.role !== 'admin') {
+    return (
+      <div className="mx-auto max-w-4xl px-4 py-20 text-center space-y-6">
+        <h1 className="text-3xl font-black text-slate-900 uppercase tracking-widest font-mono">ACCESS RESTRICTED</h1>
+        <p className="text-xs text-slate-500 font-bold max-w-md mx-auto leading-relaxed">
+          The requested administration console is locked. Decryption credentials must be authorized through the Web Admin Gateway to view system status.
+        </p>
+      </div>
+    );
+  }
+
   const [activeSubTab, setActiveSubTab] = useState<'products' | 'categories' | 'coupons' | 'settings' | 'orders' | 'blogs' | 'services'>('products');
+
+  // Web Admin Local Credential Form States
+  const [tempAdminEmail, setTempAdminEmail] = useState(adminEmail);
+  const [tempAdminPasscode, setTempAdminPasscode] = useState(adminPasscode);
+
+  const handleSaveAdminCredentials = () => {
+    if (!tempAdminEmail || !tempAdminPasscode) {
+      addNotification('Error: Email and Passcode are required.');
+      return;
+    }
+    setAdminEmail(tempAdminEmail);
+    setAdminPasscode(tempAdminPasscode);
+    addNotification('Administrative gateway credentials successfully rotated.');
+  };
 
   // Products CRUD State
   const [editingProduct, setEditingProduct] = useState<Partial<Product> | null>(null);
@@ -1023,6 +1050,51 @@ export const AdminDashboard: React.FC = () => {
               >
                 <Save className="h-4 w-4" /> Save Website Configuration
               </button>
+            </div>
+
+            {/* Administrative Access Credentials Rotation */}
+            <div className="mt-12 p-6 bg-slate-50 border-2 border-slate-900 rounded-none space-y-4 shadow-[4px_4px_0px_0px_rgba(244,63,94,1)] text-xs">
+              <h4 className="text-xs font-black text-slate-900 uppercase tracking-widest font-mono flex items-center gap-2">
+                <Settings className="h-4 w-4 text-rose-500" />
+                Administrative Access Credentials
+              </h4>
+              <p className="text-[11px] text-slate-500 font-bold leading-normal">
+                Configure the private credentials used to authenticate via the secure Web Admin Gateway. Keep these coordinates confidential.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">Admin Email</label>
+                  <input
+                    type="email"
+                    required
+                    value={tempAdminEmail}
+                    onChange={(e) => setTempAdminEmail(e.target.value)}
+                    className="w-full bg-white border-2 border-slate-900 rounded-none px-3.5 py-2.5 text-slate-900 focus:outline-none font-semibold font-mono"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">Secure Administrative Passcode</label>
+                  <input
+                    type="text"
+                    required
+                    value={tempAdminPasscode}
+                    onChange={(e) => setTempAdminPasscode(e.target.value)}
+                    className="w-full bg-white border-2 border-slate-900 rounded-none px-3.5 py-2.5 text-slate-900 focus:outline-none font-semibold font-mono"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end pt-2">
+                <button
+                  type="button"
+                  onClick={handleSaveAdminCredentials}
+                  className="flex items-center gap-1.5 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white border-2 border-slate-900 rounded-none text-xs font-black uppercase tracking-wider cursor-pointer shadow-[2.5px_2.5px_0px_0px_rgba(244,63,94,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+                >
+                  <Save className="h-4 w-4 text-rose-500" /> Update Access Credentials
+                </button>
+              </div>
             </div>
           </form>
         )}

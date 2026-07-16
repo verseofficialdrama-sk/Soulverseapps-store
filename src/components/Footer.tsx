@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const { settings, setActiveTab, products } = useApp();
+  const { settings, setActiveTab, products, setAdminLoginOpen } = useApp();
   const [seoTrayOpen, setSeoTrayOpen] = useState(false);
 
   const generateSitemap = () => {
@@ -234,10 +234,10 @@ export const Footer: React.FC = () => {
         )}
 
         <div className="mt-8 border-t-2 border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono uppercase font-bold text-slate-500">
-          <p className="text-xs">&copy; {new Date().getFullYear()} {settings.companyName || 'Soulverse Apps'}. All rights reserved.</p>
-          <div className="flex items-center gap-2 text-xs">
+          <p onDoubleClick={() => setAdminLoginOpen(true)} className="text-xs cursor-default select-none hover:text-slate-600 transition-colors">&copy; {new Date().getFullYear()} {settings.companyName || 'Soulverse Apps'}. All rights reserved.</p>
+          <div onDoubleClick={() => setAdminLoginOpen(true)} className="flex items-center gap-2 text-xs cursor-default select-none">
             <span>Powered by</span>
-            <span className="text-slate-900 font-black tracking-wider">SOULVERSE ENGINE</span>
+            <span className="text-slate-900 font-black tracking-wider hover:text-indigo-600 transition-colors">SOULVERSE ENGINE</span>
           </div>
         </div>
       </div>
