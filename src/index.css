@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Redefine Zinc to represent our clean, high-contrast Slate & White theme */
+  --color-zinc-950: #F8FAFC; /* Clean light slate background */
+  --color-zinc-900: #FFFFFF; /* High-contrast white card backgrounds */
+  --color-zinc-850: #E2E8F0; /* Soft slate border */
+  --color-zinc-800: #CBD5E1; /* Muted border */
+  --color-zinc-700: #94A3B8; /* Muted slate text */
+  --color-zinc-600: #64748B; /* Secondary description text */
+  --color-zinc-500: #475569; /* Body-muted text */
+  --color-zinc-400: #334155; /* Body text */
+  --color-zinc-350: #1E293B; /* Accent text */
+  --color-zinc-300: #0F172A; /* Heading/Title text */
+  --color-zinc-200: #0F172A; /* Direct dark slate text */
+  --color-zinc-100: #0F172A;
+
+  /* Map Indigo (used everywhere for buttons/highlights) to Emerald */
+  --color-indigo-950: #ECFDF5; /* Emerald 50 */
+  --color-indigo-900: #D1FAE5; /* Emerald 100 */
+  --color-indigo-800: #A7F3D0; /* Emerald 200 */
+  --color-indigo-700: #047857; /* Emerald 700 */
+  --color-indigo-600: #10B981; /* Emerald 500 - Core Theme Accent */
+  --color-indigo-500: #34D399; /* Emerald 400 */
+  --color-indigo-400: #059669; /* Emerald 600 */
+  --color-indigo-300: #047857;
+  --color-indigo-200: #064E3B;
+
+  /* Map Violet to Emerald as well */
+  --color-violet-950: #ECFDF5;
+  --color-violet-900: #D1FAE5;
+  --color-violet-850: #A7F3D0;
+  --color-violet-800: #047857;
+  --color-violet-700: #10B981;
+  --color-violet-600: #34D399;
+  --color-violet-500: #059669;
+  --color-violet-400: #047857;
+}
+
+/* Custom layout animations & Neobrutalist geometric styles */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom geometric classes for Neobrutalist high contrast */
+.geo-border-thick {
+  border: 2px solid #0F172A;
+}
+
+.geo-shadow-offset {
+  box-shadow: 4px 4px 0px 0px #0F172A;
+}
+
+.geo-shadow-offset-sm {
+  box-shadow: 2px 2px 0px 0px #0F172A;
+}
+
+.geo-shadow-offset-active {
+  box-shadow: 0px 0px 0px 0px #0F172A;
+  transform: translate(2px, 2px);
+}
+
+/* Set scrollbar style for elegant geometry */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+::-webkit-scrollbar-thumb {
+  background: #0F172A;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10B981;
+}

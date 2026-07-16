@@ -1,0 +1,6 @@
+{
+  "name": "Soulverse Apps",
+  "description": "Premium digital marketplace and enterprise-grade company website for Soulverse Apps.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
