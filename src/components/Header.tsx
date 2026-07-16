@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ onCartToggle, onLoginToggle }) =
 
   const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
 
-  const navLinks = [
+  const defaultLinks = [
     { name: 'Home', tab: 'Home' },
     { name: 'Products', tab: 'Products' },
     { name: 'Services', tab: 'Services' },
@@ -32,6 +32,10 @@ export const Header: React.FC<HeaderProps> = ({ onCartToggle, onLoginToggle }) =
     { name: 'Contact', tab: 'Contact' },
     { name: 'FAQ', tab: 'FAQ' }
   ];
+
+  const navLinks = settings.navigationMenu && settings.navigationMenu.length > 0 
+    ? settings.navigationMenu.map(item => ({ name: item.label, tab: item.tab }))
+    : defaultLinks;
 
   const handleNavClick = (tab: string) => {
     setActiveTab(tab);
@@ -165,7 +169,7 @@ export const Header: React.FC<HeaderProps> = ({ onCartToggle, onLoginToggle }) =
                 </div>
                 <div className="hidden md:block">
                   <p className="text-xs font-bold text-slate-900 truncate max-w-[80px]">{currentUser.name}</p>
-                  <p className="text-[9px] text-slate-500 font-semibold uppercase tracking-wider">{currentUser.role}</p>
+                  <p className="text-[9px] text-slate-500 font-semibold uppercase tracking-wider">Member</p>
                 </div>
                 <ChevronDown className="h-3.5 w-3.5 text-slate-500" />
               </button>
@@ -176,19 +180,6 @@ export const Header: React.FC<HeaderProps> = ({ onCartToggle, onLoginToggle }) =
                     <p className="text-[9px] text-slate-400 uppercase tracking-wider font-bold">Signed in as</p>
                     <p className="text-xs font-bold text-slate-900 truncate font-mono">{currentUser.email}</p>
                   </div>
-
-                  {currentUser.role === 'admin' && (
-                    <button
-                      onClick={() => {
-                        handleNavClick('Admin');
-                        setProfileDropdownOpen(false);
-                      }}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-none transition-colors mt-1"
-                    >
-                      <Settings className="h-4 w-4 text-slate-400" />
-                      Admin Panel
-                    </button>
-                  )}
 
                   <button
                     onClick={() => {
@@ -250,14 +241,6 @@ export const Header: React.FC<HeaderProps> = ({ onCartToggle, onLoginToggle }) =
               {link.name}
             </button>
           ))}
-          {currentUser?.role === 'admin' && (
-            <button
-              onClick={() => handleNavClick('Admin')}
-              className="w-full text-left px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 border-l-4 border-indigo-600 rounded-none"
-            >
-              Admin Dashboard
-            </button>
-          )}
         </div>
       )}
     </header>

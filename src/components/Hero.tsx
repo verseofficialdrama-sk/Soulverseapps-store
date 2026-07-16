@@ -44,12 +44,12 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Heading */}
-          <h1 className="text-4xl font-black uppercase tracking-tight text-slate-900 sm:text-6xl py-1 font-display leading-none">
+          <h1 className="text-4xl font-black uppercase tracking-tight text-zinc-100 sm:text-6xl py-1 font-display leading-none">
             {settings.heroTitle || 'Enterprise Software & Digital Products Marketplace'}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm font-medium text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm font-medium text-zinc-300 leading-relaxed max-w-2xl mx-auto">
             {settings.heroSubtitle || 'Build and scale your next digital venture with our production-ready source code, custom apps, AI platforms, and enterprise solutions.'}
           </p>
 

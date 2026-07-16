@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { 
   Product, Category, BlogPost, ServiceItem, PortfolioItem, 
-  WebsiteSettings, Coupon, UserProfile, Order, Review 
+  WebsiteSettings, Coupon, UserProfile, Order, Review,
+  CustomPage, AppItem, ContactMessage, NewsletterSubscriber, SupportRequest, MediaFile, StaffUser
 } from '../types';
 import { 
   INITIAL_CATEGORIES, INITIAL_PRODUCTS, INITIAL_SERVICES, 
-  INITIAL_PORTFOLIO, INITIAL_BLOG, INITIAL_COUPONS, INITIAL_SETTINGS 
+  INITIAL_PORTFOLIO, INITIAL_BLOG, INITIAL_COUPONS, INITIAL_SETTINGS,
+  INITIAL_PAGES, INITIAL_APPS, INITIAL_CONTACT_MESSAGES, INITIAL_SUBSCRIBERS,
+  INITIAL_SUPPORT_REQUESTS, INITIAL_MEDIA_FILES, INITIAL_STAFF
 } from '../data/initialData';
 
 interface AppContextProps {
@@ -16,6 +19,15 @@ interface AppContextProps {
   blogPosts: BlogPost[];
   coupons: Coupon[];
   settings: WebsiteSettings;
+  
+  // New CMS Collections
+  customPages: CustomPage[];
+  appItems: AppItem[];
+  contactMessages: ContactMessage[];
+  newsletterSubscribers: NewsletterSubscriber[];
+  supportRequests: SupportRequest[];
+  mediaFiles: MediaFile[];
+  staffUsers: StaffUser[];
   
   // Auth
   currentUser: UserProfile | null;
@@ -75,6 +87,27 @@ interface AppContextProps {
   updateSettings: (settings: WebsiteSettings) => void;
   addReview: (productId: string, rating: number, comment: string) => void;
   
+  // New CMS CRUD operations
+  savePage: (page: CustomPage) => void;
+  deletePage: (id: string) => void;
+  saveAppItem: (app: AppItem) => void;
+  deleteAppItem: (id: string) => void;
+  recordAppDownload: (id: string) => void;
+  saveContactMessage: (message: ContactMessage) => void;
+  deleteContactMessage: (id: string) => void;
+  submitContactForm: (name: string, email: string, subject: string, message: string) => Promise<boolean>;
+  saveNewsletterSubscriber: (sub: NewsletterSubscriber) => void;
+  deleteNewsletterSubscriber: (id: string) => void;
+  submitNewsletter: (email: string) => Promise<boolean>;
+  saveSupportRequest: (req: SupportRequest) => void;
+  deleteSupportRequest: (id: string) => void;
+  submitSupportRequest: (subject: string, description: string, priority: 'low' | 'medium' | 'high') => Promise<boolean>;
+  replyToSupportRequest: (id: string, message: string, author: string) => void;
+  saveMediaFile: (file: MediaFile) => void;
+  deleteMediaFile: (id: string) => void;
+  saveStaffUser: (user: StaffUser) => void;
+  deleteStaffUser: (id: string) => void;
+  
   // Notifications
   notifications: string[];
   addNotification: (message: string) => void;
@@ -123,6 +156,42 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [orders, setOrders] = useState<Order[]>(() => {
     const data = localStorage.getItem('soul_orders');
     return data ? JSON.parse(data) : [];
+  });
+
+  // New CMS Collections
+  const [customPages, setCustomPages] = useState<CustomPage[]>(() => {
+    const data = localStorage.getItem('soul_pages');
+    return data ? JSON.parse(data) : INITIAL_PAGES;
+  });
+
+  const [appItems, setAppItems] = useState<AppItem[]>(() => {
+    const data = localStorage.getItem('soul_apps');
+    return data ? JSON.parse(data) : INITIAL_APPS;
+  });
+
+  const [contactMessages, setContactMessages] = useState<ContactMessage[]>(() => {
+    const data = localStorage.getItem('soul_messages');
+    return data ? JSON.parse(data) : INITIAL_CONTACT_MESSAGES;
+  });
+
+  const [newsletterSubscribers, setNewsletterSubscribers] = useState<NewsletterSubscriber[]>(() => {
+    const data = localStorage.getItem('soul_subscribers');
+    return data ? JSON.parse(data) : INITIAL_SUBSCRIBERS;
+  });
+
+  const [supportRequests, setSupportRequests] = useState<SupportRequest[]>(() => {
+    const data = localStorage.getItem('soul_support');
+    return data ? JSON.parse(data) : INITIAL_SUPPORT_REQUESTS;
+  });
+
+  const [mediaFiles, setMediaFiles] = useState<MediaFile[]>(() => {
+    const data = localStorage.getItem('soul_media');
+    return data ? JSON.parse(data) : INITIAL_MEDIA_FILES;
+  });
+
+  const [staffUsers, setStaffUsers] = useState<StaffUser[]>(() => {
+    const data = localStorage.getItem('soul_staff');
+    return data ? JSON.parse(data) : INITIAL_STAFF;
   });
 
   // Web Admin Credentials
@@ -177,6 +246,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => { localStorage.setItem('soul_coupons', JSON.stringify(coupons)); }, [coupons]);
   useEffect(() => { localStorage.setItem('soul_settings', JSON.stringify(settings)); }, [settings]);
   useEffect(() => { localStorage.setItem('soul_orders', JSON.stringify(orders)); }, [orders]);
+  useEffect(() => { localStorage.setItem('soul_pages', JSON.stringify(customPages)); }, [customPages]);
+  useEffect(() => { localStorage.setItem('soul_apps', JSON.stringify(appItems)); }, [appItems]);
+  useEffect(() => { localStorage.setItem('soul_messages', JSON.stringify(contactMessages)); }, [contactMessages]);
+  useEffect(() => { localStorage.setItem('soul_subscribers', JSON.stringify(newsletterSubscribers)); }, [newsletterSubscribers]);
+  useEffect(() => { localStorage.setItem('soul_support', JSON.stringify(supportRequests)); }, [supportRequests]);
+  useEffect(() => { localStorage.setItem('soul_media', JSON.stringify(mediaFiles)); }, [mediaFiles]);
+  useEffect(() => { localStorage.setItem('soul_staff', JSON.stringify(staffUsers)); }, [staffUsers]);
   useEffect(() => { localStorage.setItem('soul_cart', JSON.stringify(cart)); }, [cart]);
   useEffect(() => { localStorage.setItem('soul_wishlist', JSON.stringify(wishlist)); }, [wishlist]);
   useEffect(() => { 
@@ -543,9 +619,194 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }));
   };
 
+  // Pages CMS
+  const savePage = (page: CustomPage) => {
+    setCustomPages(prev => {
+      const exists = prev.some(p => p.id === page.id);
+      if (exists) {
+        addNotification(`Page "${page.title}" updated.`);
+        return prev.map(p => p.id === page.id ? page : p);
+      } else {
+        addNotification(`Page "${page.title}" created.`);
+        return [...prev, page];
+      }
+    });
+  };
+
+  const deletePage = (id: string) => {
+    setCustomPages(prev => prev.filter(p => p.id !== id));
+    addNotification('Custom page deleted.');
+  };
+
+  // Apps CMS
+  const saveAppItem = (app: AppItem) => {
+    setAppItems(prev => {
+      const exists = prev.some(a => a.id === app.id);
+      if (exists) {
+        addNotification(`App "${app.name}" updated.`);
+        return prev.map(a => a.id === app.id ? app : a);
+      } else {
+        addNotification(`App "${app.name}" registered in registry.`);
+        return [...prev, app];
+      }
+    });
+  };
+
+  const deleteAppItem = (id: string) => {
+    setAppItems(prev => prev.filter(a => a.id !== id));
+    addNotification('Application registry item deleted.');
+  };
+
+  const recordAppDownload = (id: string) => {
+    setAppItems(prev => prev.map(a => a.id === id ? { ...a, downloadsCount: a.downloadsCount + 1 } : a));
+    addNotification('Application download initiated successfully.');
+  };
+
+  // Contact Messages
+  const saveContactMessage = (msg: ContactMessage) => {
+    setContactMessages(prev => prev.map(m => m.id === msg.id ? msg : m));
+    addNotification('Contact message status updated.');
+  };
+
+  const deleteContactMessage = (id: string) => {
+    setContactMessages(prev => prev.filter(m => m.id !== id));
+    addNotification('Contact message record cleared.');
+  };
+
+  const submitContactForm = async (name: string, email: string, subject: string, message: string): Promise<boolean> => {
+    const newMsg: ContactMessage = {
+      id: 'msg-' + Math.random().toString(36).substr(2, 9),
+      name,
+      email,
+      subject,
+      message,
+      date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      isRead: false
+    };
+    setContactMessages(prev => [newMsg, ...prev]);
+    if (settings.notifyOnNewMessage) {
+      addNotification(`New inquiry from ${name} on system: "${subject}"`);
+    } else {
+      addNotification('Thank you! Your message was transmitted to the team.');
+    }
+    return true;
+  };
+
+  // Newsletter
+  const saveNewsletterSubscriber = (sub: NewsletterSubscriber) => {
+    setNewsletterSubscribers(prev => {
+      const exists = prev.some(s => s.id === sub.id || s.email.toLowerCase() === sub.email.toLowerCase());
+      if (exists) return prev;
+      return [...prev, sub];
+    });
+  };
+
+  const deleteNewsletterSubscriber = (id: string) => {
+    setNewsletterSubscribers(prev => prev.filter(s => s.id !== id));
+    addNotification('Newsletter subscription cancelled.');
+  };
+
+  const submitNewsletter = async (email: string): Promise<boolean> => {
+    const isDup = newsletterSubscribers.some(s => s.email.toLowerCase() === email.toLowerCase());
+    if (isDup) {
+      addNotification('This email coordinate is already subscribed.');
+      return true;
+    }
+    const newSub: NewsletterSubscriber = {
+      id: 'sub-' + Math.random().toString(36).substr(2, 9),
+      email,
+      subscribedAt: new Date().toISOString().split('T')[0]
+    };
+    setNewsletterSubscribers(prev => [newSub, ...prev]);
+    addNotification('Thank you for subscribing to Soulverse Insights!');
+    return true;
+  };
+
+  // Support Requests
+  const saveSupportRequest = (req: SupportRequest) => {
+    setSupportRequests(prev => prev.map(r => r.id === req.id ? req : r));
+    addNotification(`Support Request status: ${req.status}`);
+  };
+
+  const deleteSupportRequest = (id: string) => {
+    setSupportRequests(prev => prev.filter(r => r.id !== id));
+    addNotification('Support ticket deleted.');
+  };
+
+  const submitSupportRequest = async (subject: string, description: string, priority: 'low' | 'medium' | 'high'): Promise<boolean> => {
+    const newReq: SupportRequest = {
+      id: 'ticket-' + Math.random().toString(36).substr(2, 9),
+      userEmail: currentUser?.email || 'guest@soulverseapps.com',
+      userName: currentUser?.name || 'Guest User',
+      subject,
+      description,
+      priority,
+      status: 'open',
+      date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+      replies: []
+    };
+    setSupportRequests(prev => [newReq, ...prev]);
+    if (settings.notifyOnNewSupport) {
+      addNotification(`Support ticket raised: "${subject}"`);
+    } else {
+      addNotification('Support ticket submitted successfully. We are reviewing your issue.');
+    }
+    return true;
+  };
+
+  const replyToSupportRequest = (id: string, message: string, author: string) => {
+    setSupportRequests(prev => prev.map(r => {
+      if (r.id === id) {
+        const newReply = {
+          author,
+          message,
+          date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+        };
+        return {
+          ...r,
+          status: 'in-progress' as const,
+          replies: [...(r.replies || []), newReply]
+        };
+      }
+      return r;
+    }));
+    addNotification('Response posted on support ticket.');
+  };
+
+  // Media Library
+  const saveMediaFile = (file: MediaFile) => {
+    setMediaFiles(prev => {
+      const exists = prev.some(m => m.id === file.id);
+      if (exists) return prev.map(m => m.id === file.id ? file : m);
+      return [file, ...prev];
+    });
+    addNotification(`Media file "${file.name}" registered.`);
+  };
+
+  const deleteMediaFile = (id: string) => {
+    setMediaFiles(prev => prev.filter(m => m.id !== id));
+    addNotification('Media library file removed.');
+  };
+
+  // Staff Users
+  const saveStaffUser = (user: StaffUser) => {
+    setStaffUsers(prev => {
+      const exists = prev.some(u => u.id === user.id);
+      if (exists) return prev.map(u => u.id === user.id ? user : u);
+      return [...prev, user];
+    });
+    addNotification(`Staff User "${user.name}" updated.`);
+  };
+
+  const deleteStaffUser = (id: string) => {
+    setStaffUsers(prev => prev.filter(u => u.id !== id));
+    addNotification('Staff permission access revoked.');
+  };
+
   return (
     <AppContext.Provider value={{
       products, categories, services, portfolio, blogPosts, coupons, settings,
+      customPages, appItems, contactMessages, newsletterSubscribers, supportRequests, mediaFiles, staffUsers,
       currentUser, registerUser, loginUser, logoutUser, verifyEmail, resetPassword, updateProfile,
       loginAdmin, adminEmail, setAdminEmail, adminPasscode, setAdminPasscode,
       cart, addToCart, removeFromCart, updateCartQuantity, clearCart, appliedCoupon, applyCouponCode, removeCouponCode,
@@ -554,6 +815,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       activeTab, setActiveTab, selectedCategorySlug, setSelectedCategorySlug, searchQuery, setSearchQuery, adminLoginOpen, setAdminLoginOpen,
       saveProduct, deleteProduct, saveCategory, deleteCategory, saveService, deleteService,
       saveBlogPost, deleteBlogPost, savePortfolio, deletePortfolio, saveCoupon, deleteCoupon, updateSettings, addReview,
+      savePage, deletePage, saveAppItem, deleteAppItem, recordAppDownload,
+      saveContactMessage, deleteContactMessage, submitContactForm,
+      saveNewsletterSubscriber, deleteNewsletterSubscriber, submitNewsletter,
+      saveSupportRequest, deleteSupportRequest, submitSupportRequest, replyToSupportRequest,
+      saveMediaFile, deleteMediaFile, saveStaffUser, deleteStaffUser,
       notifications, addNotification, clearNotifications
     }}>
       {children}

@@ -120,6 +120,125 @@ export interface WebsiteSettings {
   twitterUrl?: string;
   githubUrl?: string;
   linkedinUrl?: string;
+  instagramUrl?: string;
+  youtubeUrl?: string;
   heroTitle: string;
   heroSubtitle: string;
+  heroImage?: string;
+  logoImage?: string;
+  faviconUrl?: string;
+  whatsappNumber?: string;
+  businessEmail?: string;
+  supportEmail?: string;
+  copyrightText?: string;
+  
+  // Navigation Menu (JSON stringified array or direct structure)
+  navigationMenu: { label: string; tab: string; isExternal?: boolean; url?: string }[];
+  
+  // Homepage Sections visibility toggles
+  sectionsVisibility: {
+    hero: boolean;
+    categories: boolean;
+    featured: boolean;
+    whyUs: boolean;
+    popular: boolean;
+    blog: boolean;
+    cta: boolean;
+  };
+
+  // SEO & Analytics
+  metaTitle: string;
+  metaDescription: string;
+  metaKeywords: string;
+  googleAnalyticsId: string;
+  
+  // SMTP settings
+  smtpHost?: string;
+  smtpPort?: number;
+  smtpUser?: string;
+  smtpPass?: string;
+  smtpSenderEmail?: string;
+  
+  // Notification settings
+  notifyOnNewOrder: boolean;
+  notifyOnNewMessage: boolean;
+  notifyOnNewSupport: boolean;
+  
+  // Security
+  ipWhitelist?: string;
+  maintenanceMode: boolean;
 }
+
+export interface CustomPage {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  isActive: boolean;
+  createdAt: string;
+}
+
+export interface AppItem {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  screenshots: string[];
+  apkFileUrl?: string;
+  apkFileName?: string;
+  playStoreUrl?: string;
+  appStoreUrl?: string;
+  version: string;
+  releaseNotes: string;
+  downloadsCount: number;
+  isActive: boolean;
+  landingPageContent?: string; // Rich-text/Markdown for landing page
+}
+
+export interface ContactMessage {
+  id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  date: string;
+  isRead: boolean;
+  replyText?: string;
+}
+
+export interface NewsletterSubscriber {
+  id: string;
+  email: string;
+  subscribedAt: string;
+}
+
+export interface SupportRequest {
+  id: string;
+  userEmail: string;
+  userName: string;
+  subject: string;
+  description: string;
+  priority: 'low' | 'medium' | 'high';
+  status: 'open' | 'in-progress' | 'resolved' | 'closed';
+  date: string;
+  replies?: { author: string; message: string; date: string }[];
+}
+
+export interface MediaFile {
+  id: string;
+  name: string;
+  url: string;
+  type: 'image' | 'video' | 'document' | 'other';
+  size: string;
+  uploadedAt: string;
+}
+
+export interface StaffUser {
+  id: string;
+  name: string;
+  email: string;
+  role: 'admin' | 'editor' | 'viewer';
+  status: 'active' | 'suspended';
+  permissions: string[];
+}
+

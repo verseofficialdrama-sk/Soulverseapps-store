@@ -227,6 +227,191 @@ export const INITIAL_SETTINGS: WebsiteSettings = {
   twitterUrl: 'https://twitter.com/soulverseapps',
   githubUrl: 'https://github.com/soulverseapps',
   linkedinUrl: 'https://linkedin.com/company/soulverseapps',
+  instagramUrl: 'https://instagram.com/soulverseapps',
+  youtubeUrl: 'https://youtube.com/soulverseapps',
   heroTitle: 'Enterprise Software & Digital Products Marketplace',
-  heroSubtitle: 'Build and scale your next digital venture with our production-ready source code, custom apps, AI platforms, and enterprise solutions.'
+  heroSubtitle: 'Build and scale your next digital venture with our production-ready source code, custom apps, AI platforms, and enterprise solutions.',
+  heroImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+  logoImage: '',
+  faviconUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=32&q=80',
+  whatsappNumber: '+923001234567',
+  businessEmail: 'info@soulverseapps.com',
+  supportEmail: 'support@soulverseapps.com',
+  copyrightText: 'All rights reserved.',
+  
+  navigationMenu: [
+    { label: 'Home', tab: 'Home' },
+    { label: 'Store', tab: 'Products' },
+    { label: 'Consulting', tab: 'Services' },
+    { label: 'Portfolio', tab: 'Portfolio' },
+    { label: 'Insights', tab: 'Blog' },
+    { label: 'FAQ', tab: 'FAQ' },
+    { label: 'About', tab: 'AboutUs' },
+    { label: 'Contact', tab: 'Contact' }
+  ],
+  
+  sectionsVisibility: {
+    hero: true,
+    categories: true,
+    featured: true,
+    whyUs: true,
+    popular: true,
+    blog: true,
+    cta: true
+  },
+
+  metaTitle: 'Soulverse Apps - Code Marketplace & Software Agency',
+  metaDescription: 'Secure and clean React templates, Flutter applications, AI saas configurations, and software consulting services.',
+  metaKeywords: 'react templates, flutter source code, ai chatbot source code, saas template, download apk',
+  googleAnalyticsId: 'UA-12345678-9',
+  
+  smtpHost: 'smtp.soulverseapps.com',
+  smtpPort: 587,
+  smtpUser: 'relay@soulverseapps.com',
+  smtpPass: '••••••••••••••••',
+  smtpSenderEmail: 'no-reply@soulverseapps.com',
+  
+  notifyOnNewOrder: true,
+  notifyOnNewMessage: true,
+  notifyOnNewSupport: true,
+  
+  ipWhitelist: '',
+  maintenanceMode: false
 };
+
+export const INITIAL_PAGES: any[] = [
+  {
+    id: 'page1',
+    title: 'About Our Ecosystem',
+    slug: 'about-us',
+    content: 'We are a highly specialized software assembly house delivering premium, robust codebase assets designed to eliminate boilerplate and reduce software time-to-market. Our developers have engineered systems for tens of thousands of active users worldwide.',
+    isActive: true,
+    createdAt: '2026-01-01'
+  },
+  {
+    id: 'page2',
+    title: 'Privacy Policy',
+    slug: 'privacy',
+    content: 'At Soulverse Apps, your data security is our supreme metric. We collect basic sign-in credentials strictly to verify ownership over acquired digital products and protect licenses. No analytical or behavioral telemetry is transmitted to commercial brokers.',
+    isActive: true,
+    createdAt: '2026-01-01'
+  },
+  {
+    id: 'page3',
+    title: 'Terms of Digital Delivery',
+    slug: 'terms',
+    content: 'Digital products, source code, and custom assemblies are transmitted to your personal portal profile instantly upon complete payment validation. Due to the raw textual nature of software materials, all acquisitions are final and non-refundable.',
+    isActive: true,
+    createdAt: '2026-01-01'
+  }
+];
+
+export const INITIAL_APPS: any[] = [
+  {
+    id: 'app1',
+    name: 'SoulAI Native - Android Assistant',
+    description: 'Fully responsive Android client built in Kotlin & Jetpack Compose interfacing with our cloud chatbot modules. Features voice commands, dynamic chats, and home widgets.',
+    icon: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=128&q=80',
+    screenshots: [
+      'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80'
+    ],
+    apkFileUrl: '/downloads/soulai-native-v1.0.apk',
+    apkFileName: 'soulai-native-v1.0.apk',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.soulverse.assistant',
+    appStoreUrl: 'https://apps.apple.com/app/soulverse-assistant',
+    version: 'v1.0.2',
+    releaseNotes: 'Initial stable release with full Gemini 2.5 context optimization and robust streaming text controls.',
+    downloadsCount: 1420,
+    isActive: true,
+    landingPageContent: '# SoulAI Mobile App\nExperience ultimate intelligence right on your Android phone. Fully optimized layout, biometric locks, widgets, and offline history cache.'
+  },
+  {
+    id: 'app2',
+    name: 'VoltDrive - Flutter Mobile Cloud Client',
+    description: 'Beautiful Flutter cloud drive app. Includes secure biometrics, multi-thread downloading, automated camera backup sync, and offline catalog indexers.',
+    icon: 'https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?auto=format&fit=crop&w=128&q=80',
+    screenshots: [
+      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80'
+    ],
+    apkFileUrl: '/downloads/voltdrive-flutter-v1.4.apk',
+    apkFileName: 'voltdrive-flutter-v1.4.apk',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.soulverse.voltdrive',
+    appStoreUrl: '',
+    version: 'v1.4.3',
+    releaseNotes: 'Added fingerprint sensor recognition and automated localized background backup scheduling.',
+    downloadsCount: 3820,
+    isActive: true,
+    landingPageContent: '# VoltDrive App\nThe ultimate decentralized cloud vault companion on your hand.'
+  }
+];
+
+export const INITIAL_CONTACT_MESSAGES: any[] = [
+  {
+    id: 'msg1',
+    name: 'Tariq Mahmood',
+    email: 'tariq@lahoreventures.pk',
+    subject: 'Custom AI SaaS Platform Quote',
+    message: 'Hello, we are interested in deploying a private-label version of your SoulAI software matching our custom enterprise database. Can you schedule a consultation regarding backend integrations?',
+    date: '2026-07-15 10:45 AM',
+    isRead: false
+  },
+  {
+    id: 'msg2',
+    name: 'Elena Rostova',
+    email: 'elena.r@nordictemplates.com',
+    subject: 'Affiliate developer rights question',
+    message: 'Are there white-label developer rights included in the Nexus Admin package? We plan to deliver modified layouts to five local business clients.',
+    date: '2026-07-14 04:12 PM',
+    isRead: true,
+    replyText: 'Yes, the Aura and Nexus commercial licenses grant you rights to deploy modified derivatives to end clients as part of your agency services.'
+  }
+];
+
+export const INITIAL_SUBSCRIBERS: any[] = [
+  { id: 'sub1', email: 'junaid.tech@gmail.com', subscribedAt: '2026-07-10' },
+  { id: 'sub2', email: 'kate.wilson@saasbuilder.io', subscribedAt: '2026-07-12' },
+  { id: 'sub3', email: 'developer.rashid@outlook.com', subscribedAt: '2026-07-16' }
+];
+
+export const INITIAL_SUPPORT_REQUESTS: any[] = [
+  {
+    id: 'ticket1',
+    userEmail: 'rashid.pk@outlook.com',
+    userName: 'Rashid Mahmood',
+    subject: 'Stripe webhook payment validation delay',
+    description: 'Hello, I completed the transaction for VoltDrive Flutter app but my download folder list says verification pending. Transaction reference is soul-trx-9841.',
+    priority: 'high',
+    status: 'open',
+    date: '2026-07-16 08:30 AM',
+    replies: []
+  },
+  {
+    id: 'ticket2',
+    userEmail: 'sandra.dee@webdevs.org',
+    userName: 'Sandra Dee',
+    subject: 'Tailwind configuration warning in Next.js 15 template',
+    description: 'When running npm build I receive a minor warning about unused keyframes inside tailwind config. Is there an issue with compile targets?',
+    priority: 'low',
+    status: 'resolved',
+    date: '2026-07-13 11:20 AM',
+    replies: [
+      { author: 'Soulverse support', message: 'Hello Sandra, that keyframe is a minor unused utility which will not affect production assets. You can safely ignore it, or remove lines 24-28 in tailwind.config.', date: '2026-07-13 01:45 PM' }
+    ]
+  }
+];
+
+export const INITIAL_MEDIA_FILES: any[] = [
+  { id: 'med1', name: 'soulai-banner.jpg', url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', type: 'image', size: '142 KB', uploadedAt: '2026-07-10' },
+  { id: 'med2', name: 'voltdrive-home.png', url: 'https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?auto=format&fit=crop&w=800&q=80', type: 'image', size: '98 KB', uploadedAt: '2026-07-12' },
+  { id: 'med3', name: 'aura-storefront.jpg', url: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?auto=format&fit=crop&w=800&q=80', type: 'image', size: '204 KB', uploadedAt: '2026-07-13' },
+  { id: 'med4', name: 'soulai-demo.mp4', url: 'https://www.w3schools.com/html/mov_bbb.mp4', type: 'video', size: '1.2 MB', uploadedAt: '2026-07-14' },
+  { id: 'med5', name: 'corporate-licensing.pdf', url: '#', type: 'document', size: '412 KB', uploadedAt: '2026-07-15' }
+];
+
+export const INITIAL_STAFF: any[] = [
+  { id: 'stf1', name: 'Soulverse Administrator', email: 'admin@soulverseapps.com', role: 'admin', status: 'active', permissions: ['all'] },
+  { id: 'stf2', name: 'Junaid Khan (Developer)', email: 'junaid@soulverseapps.com', role: 'editor', status: 'active', permissions: ['manage_products', 'manage_apps', 'manage_blog'] },
+  { id: 'stf3', name: 'Ayesha Ahmed (Support)', email: 'ayesha@soulverseapps.com', role: 'viewer', status: 'active', permissions: ['view_orders', 'reply_support', 'reply_messages'] }
+];
+

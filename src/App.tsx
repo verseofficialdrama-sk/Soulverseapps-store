@@ -29,35 +29,23 @@ const AppContent: React.FC = () => {
     activeTab, setActiveTab, products, categories, 
     selectedCategorySlug, setSelectedCategorySlug, 
     searchQuery, setSearchQuery, blogPosts,
-    adminLoginOpen, setAdminLoginOpen
+    adminLoginOpen, setAdminLoginOpen,
+    currentUser, customPages, settings
   } = useApp();
 
   const [cartOpen, setCartOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [hash, setHash] = useState(window.location.hash);
 
-  // Hidden Trigger: URL Search Params Detector
+  // Router Hash Change Listener
   React.useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('webadmin') === 'true' || params.get('portal') === 'secure') {
-      setAdminLoginOpen(true);
-      // Clean up search parameters silently to maintain secrecy
-      const cleanUrl = window.location.pathname + window.location.hash;
-      window.history.replaceState({}, document.title, cleanUrl);
-    }
-  }, [setAdminLoginOpen]);
+    const handleHashChange = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
-  // Hidden Trigger: Keyboard Shortcuts (Ctrl + Alt + A)
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'a') {
-        e.preventDefault();
-        setAdminLoginOpen(true);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [setAdminLoginOpen]);
+  const isWebAdminRoute = hash === '#/soulverse-admin' || window.location.pathname === '/soulverse-admin';
 
   // Filter products based on selected tab/search query
   const filteredProducts = products.filter(p => {
@@ -77,6 +65,21 @@ const AppContent: React.FC = () => {
   const featuredProducts = products.filter(p => p.isFeatured);
   const popularProducts = products.filter(p => p.isPopular);
 
+  // ISOLATED PRIVATE WEB ADMIN PORTAL CMS (NO public Header/Footer rendered)
+  if (isWebAdminRoute) {
+    return (
+      <div className="min-h-screen bg-slate-100 text-slate-800 font-sans selection:bg-indigo-600/30">
+        {currentUser?.role === 'admin' ? (
+          <AdminDashboard />
+        ) : (
+          <div className="min-h-screen flex items-center justify-center p-4 bg-slate-900">
+            <AdminLoginModal inline />
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-400 font-sans selection:bg-indigo-600/30 selection:text-zinc-300">
       {/* Structural Header */}
@@ -90,41 +93,43 @@ const AppContent: React.FC = () => {
         {/* HOME ROUTE */}
         {activeTab === 'Home' && (
           <div className="space-y-16">
-            <Hero />
+            {settings.sectionsVisibility?.hero !== false && <Hero />}
 
             {/* Category Quick Selector Pill Rails */}
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="text-center space-y-2 mb-6">
-                <span className="text-[10px] uppercase font-bold text-indigo-600 tracking-widest font-mono">Browse Categories</span>
-                <h2 className="text-2xl font-black uppercase tracking-tighter text-zinc-300 font-display">Segmented Code Collections</h2>
-              </div>
-              <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-4xl mx-auto">
-                <button
-                  onClick={() => {
-                    setSelectedCategorySlug('all');
-                    setActiveTab('Products');
-                  }}
-                  className="px-4 py-2 border-2 border-slate-900 bg-white hover:bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-900 rounded-none transition-all cursor-pointer geo-shadow-offset-sm hover:-translate-y-0.5"
-                >
-                  All Products ({products.length})
-                </button>
-                {categories.map((cat) => (
+            {settings.sectionsVisibility?.categories !== false && (
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="text-center space-y-2 mb-6">
+                  <span className="text-[10px] uppercase font-bold text-indigo-600 tracking-widest font-mono">Browse Categories</span>
+                  <h2 className="text-2xl font-black uppercase tracking-tighter text-zinc-300 font-display">Segmented Code Collections</h2>
+                </div>
+                <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-4xl mx-auto">
                   <button
-                    key={cat.id}
                     onClick={() => {
-                      setSelectedCategorySlug(cat.slug);
+                      setSelectedCategorySlug('all');
                       setActiveTab('Products');
                     }}
                     className="px-4 py-2 border-2 border-slate-900 bg-white hover:bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-900 rounded-none transition-all cursor-pointer geo-shadow-offset-sm hover:-translate-y-0.5"
                   >
-                    {cat.name}
+                    All Products ({products.length})
                   </button>
-                ))}
+                  {categories.map((cat) => (
+                    <button
+                      key={cat.id}
+                      onClick={() => {
+                        setSelectedCategorySlug(cat.slug);
+                        setActiveTab('Products');
+                      }}
+                      className="px-4 py-2 border-2 border-slate-900 bg-white hover:bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-900 rounded-none transition-all cursor-pointer geo-shadow-offset-sm hover:-translate-y-0.5"
+                    >
+                      {cat.name}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Featured Showcase segment */}
-            {featuredProducts.length > 0 && (
+            {settings.sectionsVisibility?.featured !== false && featuredProducts.length > 0 && (
               <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                   <div>
@@ -157,32 +162,34 @@ const AppContent: React.FC = () => {
             )}
 
             {/* Why Choose Us Enterprise Bento Grid */}
-            <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10 py-8 border-t border-slate-200">
-              <div className="text-center max-w-2xl mx-auto space-y-2">
-                <span className="text-[10px] uppercase font-bold text-indigo-600 tracking-widest font-mono">The Soulverse Standard</span>
-                <h2 className="text-3xl font-black uppercase tracking-tighter text-zinc-300 font-display">Why Lead Teams Build with Us</h2>
-                <p className="text-xs text-zinc-600">We maintain zero tolerance for un-optimized code blocks, deprecated dependencies, or layout gaps.</p>
-              </div>
+            {settings.sectionsVisibility?.whyUs !== false && (
+              <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10 py-8 border-t border-slate-200">
+                <div className="text-center max-w-2xl mx-auto space-y-2">
+                  <span className="text-[10px] uppercase font-bold text-indigo-600 tracking-widest font-mono">The Soulverse Standard</span>
+                  <h2 className="text-3xl font-black uppercase tracking-tighter text-zinc-300 font-display">Why Lead Teams Build with Us</h2>
+                  <p className="text-xs text-zinc-600">We maintain zero tolerance for un-optimized code blocks, deprecated dependencies, or layout gaps.</p>
+                </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                {[
-                  { title: 'Slick V4 Modular Styling', desc: 'Crafted using the absolute cleanest Tailwind CSS configuration paradigms for rapid UI alteration.', icon: <Code2 className="h-5 w-5 text-indigo-600" /> },
-                  { title: 'Tested Compiler Compliance', desc: 'All Flutter, React, and Android files compile with zero strict deprecation warnings out-of-the-box.', icon: <CheckCircle className="h-5 w-5 text-indigo-600" /> },
-                  { title: 'Zero AI Slop telemetry', desc: 'No fake terminal logs, simulated port indicators or useless telemetry elements in your codebase.', icon: <ShieldCheck className="h-5 w-5 text-rose-500" /> }
-                ].map((item, i) => (
-                  <div key={i} className="p-6 border-2 border-slate-900 bg-white hover:-translate-y-1 rounded-none space-y-3.5 transition-all duration-200 geo-shadow-offset">
-                    <div className="h-10 w-10 bg-slate-50 border border-slate-200 rounded-none flex items-center justify-center">
-                      {item.icon}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                  {[
+                    { title: 'Slick V4 Modular Styling', desc: 'Crafted using the absolute cleanest Tailwind CSS configuration paradigms for rapid UI alteration.', icon: <Code2 className="h-5 w-5 text-indigo-600" /> },
+                    { title: 'Tested Compiler Compliance', desc: 'All Flutter, React, and Android files compile with zero strict deprecation warnings out-of-the-box.', icon: <CheckCircle className="h-5 w-5 text-indigo-600" /> },
+                    { title: 'Zero AI Slop telemetry', desc: 'No fake terminal logs, simulated port indicators or useless telemetry elements in your codebase.', icon: <ShieldCheck className="h-5 w-5 text-rose-500" /> }
+                  ].map((item, i) => (
+                    <div key={i} className="p-6 border-2 border-slate-900 bg-white hover:-translate-y-1 rounded-none space-y-3.5 transition-all duration-200 geo-shadow-offset">
+                      <div className="h-10 w-10 bg-slate-50 border border-slate-200 rounded-none flex items-center justify-center">
+                        {item.icon}
+                      </div>
+                      <h3 className="text-xs uppercase font-extrabold text-slate-900 tracking-wide font-display">{item.title}</h3>
+                      <p className="text-xs text-zinc-500 leading-relaxed">{item.desc}</p>
                     </div>
-                    <h3 className="text-xs uppercase font-extrabold text-slate-900 tracking-wide font-display">{item.title}</h3>
-                    <p className="text-xs text-zinc-500 leading-relaxed">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Popular products grid */}
-            {popularProducts.length > 0 && (
+            {settings.sectionsVisibility?.popular !== false && popularProducts.length > 0 && (
               <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 py-8 border-t border-slate-200">
                 <div>
                   <span className="text-[10px] uppercase font-bold text-indigo-600 tracking-widest font-mono">Trending Assets</span>
@@ -203,7 +210,7 @@ const AppContent: React.FC = () => {
             )}
 
             {/* Blog Highlight Snippets */}
-            {blogPosts.length > 0 && (
+            {settings.sectionsVisibility?.blog !== false && blogPosts.length > 0 && (
               <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 py-8 border-t border-slate-200">
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                   <div>
@@ -239,23 +246,25 @@ const AppContent: React.FC = () => {
             )}
 
             {/* Newsletter CTA container card */}
-            <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8">
-              <div className="p-8 md:p-12 border-2 border-slate-900 bg-indigo-600 text-slate-900 rounded-none text-center space-y-4 relative overflow-hidden geo-shadow-offset">
-                <h3 className="text-3xl font-black uppercase tracking-tight text-white font-display">Need a Bespoke Architecture?</h3>
-                <p className="text-xs text-slate-100 max-w-xl mx-auto font-medium">
-                  Partner with our senior core engineering teams to construct custom high-performance mobile apps, Web APIs or fully secure AI-powered SaaS templates.
-                </p>
-                <div className="pt-2">
-                  <button
-                    onClick={() => setActiveTab('Services')}
-                    className="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider rounded-none inline-flex items-center gap-1.5 cursor-pointer shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
-                  >
-                    <span>Request Custom Proposal</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
+            {settings.sectionsVisibility?.cta !== false && (
+              <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8">
+                <div className="p-8 md:p-12 border-2 border-slate-900 bg-indigo-600 text-slate-900 rounded-none text-center space-y-4 relative overflow-hidden geo-shadow-offset">
+                  <h3 className="text-3xl font-black uppercase tracking-tight text-white font-display">Need a Bespoke Architecture?</h3>
+                  <p className="text-xs text-slate-100 max-w-xl mx-auto font-medium">
+                    Partner with our senior core engineering teams to construct custom high-performance mobile apps, Web APIs or fully secure AI-powered SaaS templates.
+                  </p>
+                  <div className="pt-2">
+                    <button
+                      onClick={() => setActiveTab('Services')}
+                      className="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider rounded-none inline-flex items-center gap-1.5 cursor-pointer shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+                    >
+                      <span>Request Custom Proposal</span>
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            )}
 
           </div>
         )}
@@ -375,6 +384,21 @@ const AppContent: React.FC = () => {
 
         {/* CLIENT PERSONAL DASHBOARD */}
         {activeTab === 'Profile' && <UserProfileSection />}
+
+        {/* DYNAMIC CMS CUSTOM PAGES */}
+        {customPages.some(p => p.slug === activeTab && p.isActive) && (
+          <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8 bg-zinc-900 border-2 border-slate-800 text-zinc-300 rounded-none geo-shadow-offset my-8">
+            <h1 className="text-3xl font-black uppercase tracking-tighter text-zinc-100 font-display mb-6 border-b-2 border-slate-800 pb-4">
+              {customPages.find(p => p.slug === activeTab)?.title}
+            </h1>
+            <div 
+              className="prose prose-invert max-w-none text-sm leading-relaxed"
+              dangerouslySetInnerHTML={{ 
+                __html: customPages.find(p => p.slug === activeTab)?.content || '' 
+              }} 
+            />
+          </div>
+        )}
 
       </main>
 
