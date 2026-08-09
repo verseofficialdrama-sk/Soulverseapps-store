@@ -15,7 +15,7 @@ export const PrivacyPolicy: React.FC = () => {
 
       <div className="space-y-5">
         <p className="text-slate-600 font-semibold">
-          At <strong>Soulverse Apps</strong> (accessible via <code className="bg-slate-100 px-1.5 py-0.5 border border-slate-300 rounded-none font-mono text-[11px] text-slate-850">https://soulverseapps.com</code>), user privacy and source code security are paramount. This document clarifies the exact scopes of information we gather, compile, store, and utilize upon your interactions with our marketplace platforms.
+          At <strong>SAWAX ENTERPRISES PRIVATE LIMITED</strong> (operating public brand <strong>Soulverse Apps</strong> and <strong>Pardais Live</strong>, accessible via <code className="bg-slate-100 px-1.5 py-0.5 border border-slate-300 rounded-none font-mono text-[11px] text-slate-850">https://soulverseapps.com</code> and <code className="bg-slate-100 px-1.5 py-0.5 border border-slate-300 rounded-none font-mono text-[11px] text-slate-850">https://pardaislive.com</code>), user privacy and data security are paramount. This document clarifies how we handle data across all our digital applications, websites, source code downloads, and platforms.
         </p>
 
         <div className="space-y-2 p-5 bg-slate-50 border-2 border-slate-900 rounded-none shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">
@@ -43,7 +43,7 @@ export const PrivacyPolicy: React.FC = () => {
             3. Client Rights & Deletion Request
           </h2>
           <p className="text-slate-600 font-semibold pt-1">
-            You retain absolute authorization to query, correct, or request deletion of your complete administrative and client logs. To initiate a full records purge from our database systems, please transmit an authenticated email request directly to our technical support team at <code className="bg-slate-100 px-1.5 py-0.5 border border-slate-300 rounded-none font-mono text-[11px] text-slate-850">support@soulverseapps.com</code>.
+            You retain absolute authorization to query, correct, or request deletion of your complete administrative and client logs. To initiate a full records purge from our database systems, please transmit an authenticated email request directly to our technical support team at <code className="bg-slate-100 px-1.5 py-0.5 border border-slate-300 rounded-none font-mono text-[11px] text-slate-850">soulversepk@gmail.com</code> or CEO Contact <code className="bg-slate-100 px-1.5 py-0.5 border border-slate-300 rounded-none font-mono text-[11px] text-slate-850">+92 300 2587667</code> (Lahore, Pakistan).
           </p>
         </div>
       </div>

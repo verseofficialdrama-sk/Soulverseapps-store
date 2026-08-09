@@ -330,34 +330,54 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1">
-                <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">Headquarters Address</label>
+                <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">Official Company Website</label>
+                <input
+                  type="text"
+                  value={settingsForm.officialWebsite || 'https://soulverseapps.com'}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, officialWebsite: e.target.value })}
+                  className="w-full bg-slate-50 border-2 border-slate-900 rounded-none px-3.5 py-2.5 text-slate-900 focus:bg-white focus:outline-none font-semibold transition-colors font-mono"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">Pardais Live Official Website</label>
+                <input
+                  type="text"
+                  value={settingsForm.pardaisLiveWebsite || 'https://pardaislive.com'}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, pardaisLiveWebsite: e.target.value })}
+                  className="w-full bg-slate-50 border-2 border-slate-900 rounded-none px-3.5 py-2.5 text-slate-900 focus:bg-white focus:outline-none font-semibold transition-colors font-mono"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">Registered Office Location</label>
                 <input
                   type="text"
                   required
                   value={settingsForm.contactAddress}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, contactAddress: e.target.value })}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, contactAddress: e.target.value, registeredOffice: e.target.value })}
                   className="w-full bg-slate-50 border-2 border-slate-900 rounded-none px-3.5 py-2.5 text-slate-900 focus:bg-white focus:outline-none font-semibold transition-colors"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">Support Email Coordinates</label>
+                <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">Official Store Email</label>
                 <input
                   type="email"
                   required
-                  value={settingsForm.supportEmail || settingsForm.contactEmail}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, supportEmail: e.target.value })}
+                  value={settingsForm.contactEmail}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, contactEmail: e.target.value, supportEmail: e.target.value, businessEmail: e.target.value })}
                   className="w-full bg-slate-50 border-2 border-slate-900 rounded-none px-3.5 py-2.5 text-slate-900 focus:bg-white focus:outline-none font-semibold transition-colors"
                 />
               </div>
 
               <div className="space-y-1">
-                <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">Contact Phone Coordinates</label>
+                <label className="text-[10px] uppercase font-black text-slate-500 font-mono tracking-widest">CEO Contact Phone</label>
                 <input
                   type="text"
                   required
                   value={settingsForm.contactPhone}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, contactPhone: e.target.value })}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, contactPhone: e.target.value, ceoContact: e.target.value })}
                   className="w-full bg-slate-50 border-2 border-slate-900 rounded-none px-3.5 py-2.5 text-slate-900 focus:bg-white focus:outline-none font-semibold transition-colors"
                 />
               </div>

@@ -196,7 +196,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Web Admin Credentials
   const [adminEmail, setAdminEmail] = useState<string>(() => {
-    return localStorage.getItem('soul_admin_email') || 'admin@soulverseapps.com';
+    return localStorage.getItem('soul_admin_email') || 'soulversepk@gmail.com';
   });
   const [adminPasscode, setAdminPasscode] = useState<string>(() => {
     return localStorage.getItem('soul_admin_passcode') || 'admin@soulverse2026';
@@ -238,6 +238,30 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [notifications, setNotifications] = useState<string[]>([]);
 
   // Sync to localStorage
+  useEffect(() => {
+    // Migration & enforcement of official company details
+    if (settings.contactEmail !== 'soulversepk@gmail.com' || settings.companyName !== 'SAWAX ENTERPRISES PRIVATE LIMITED' || !settings.officialWebsite) {
+      const updated: WebsiteSettings = {
+        ...settings,
+        companyName: 'SAWAX ENTERPRISES PRIVATE LIMITED',
+        logoText: 'Soulverse Apps',
+        contactEmail: 'soulversepk@gmail.com',
+        contactPhone: '+92 300 2587667',
+        contactAddress: 'Lahore, Pakistan',
+        officialWebsite: 'https://soulverseapps.com',
+        pardaisLiveWebsite: 'https://pardaislive.com',
+        ceoContact: '+92 300 2587667',
+        registeredOffice: 'Lahore, Pakistan',
+        whatsappNumber: '+923002587667',
+        businessEmail: 'soulversepk@gmail.com',
+        supportEmail: 'soulversepk@gmail.com',
+        copyrightText: '© 2026 SAWAX ENTERPRISES PRIVATE LIMITED. All rights reserved.'
+      };
+      setSettings(updated);
+      localStorage.setItem('soul_settings', JSON.stringify(updated));
+    }
+  }, []);
+
   useEffect(() => { localStorage.setItem('soul_products', JSON.stringify(products)); }, [products]);
   useEffect(() => { localStorage.setItem('soul_categories', JSON.stringify(categories)); }, [categories]);
   useEffect(() => { localStorage.setItem('soul_services', JSON.stringify(services)); }, [services]);
@@ -312,18 +336,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const loginAdmin = async (email: string, passcode: string): Promise<boolean> => {
-    if (email.toLowerCase() === adminEmail.toLowerCase() && passcode === adminPasscode) {
+    const lower = email.toLowerCase();
+    const isMatchingEmail = lower === adminEmail.toLowerCase() || 
+                             lower === 'soulversepk@gmail.com' || 
+                             lower === 'soulverseofficialpk@gmail.com' || 
+                             lower === 'admin@soulverseapps.com';
+    if (isMatchingEmail && passcode === adminPasscode) {
       const profile: UserProfile = {
         id: 'admin-1',
-        name: 'Soulverse Admin',
-        email: adminEmail,
+        name: 'SAWAX Admin Executive',
+        email: email,
         role: 'admin',
         isVerified: true,
         wishlist: [],
-        purchasedProducts: ['p1', 'p2', 'p3', 'p4']
+        purchasedProducts: ['p0', 'p1', 'p2', 'p3', 'p4']
       };
       setCurrentUser(profile);
-      addNotification('Web Admin authenticated successfully. Core systems online.');
+      addNotification('SAWAX Web Admin authenticated successfully. Systems online.');
       return true;
     }
     return false;

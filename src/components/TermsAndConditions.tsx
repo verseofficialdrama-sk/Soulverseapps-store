@@ -15,7 +15,7 @@ export const TermsAndConditions: React.FC = () => {
 
       <div className="space-y-5">
         <p className="text-slate-600 font-semibold">
-          Welcome to <strong>Soulverse Apps</strong>. By accessing our official marketplace at <code className="bg-slate-100 px-1.5 py-0.5 border border-slate-300 rounded-none font-mono text-[11px] text-slate-850">https://soulverseapps.com</code>, buying digital products, downloading source codes, or subscribing to our custom consulting pipelines, you consent to be bound by these Terms and Conditions.
+          Welcome to <strong>SAWAX ENTERPRISES PRIVATE LIMITED</strong> (operating public brand <strong>Soulverse Apps</strong> and <strong>Pardais Live</strong> at <code className="bg-slate-100 px-1.5 py-0.5 border border-slate-300 rounded-none font-mono text-[11px] text-slate-850">https://soulverseapps.com</code> and <code className="bg-slate-100 px-1.5 py-0.5 border border-slate-300 rounded-none font-mono text-[11px] text-slate-850">https://pardaislive.com</code>). By accessing our official marketplace, buying digital products, downloading source codes, or subscribing to custom software services, you consent to be bound by these Terms and Conditions.
         </p>
 
         <div className="space-y-2 p-5 bg-slate-50 border-2 border-slate-900 rounded-none shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">

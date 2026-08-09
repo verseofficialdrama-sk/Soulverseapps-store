@@ -18,6 +18,7 @@ import { ContactSection } from './components/ContactSection';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsAndConditions } from './components/TermsAndConditions';
 import { UserProfileSection } from './components/UserProfileSection';
+import { UpcomingProjectsSection } from './components/UpcomingProjectsSection';
 import { Product } from './types';
 import { 
   Sparkles, ShieldCheck, Zap, Globe, ArrowRight, Star, 
@@ -245,6 +246,54 @@ const AppContent: React.FC = () => {
               </section>
             )}
 
+            {/* Upcoming Projects Teaser */}
+            <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 border-t border-slate-200 space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-indigo-600 tracking-widest font-mono">SAWAX ENTERPRISES Roadmap</span>
+                  <h2 className="text-3xl font-black uppercase tracking-tighter text-zinc-300 font-display">Upcoming Projects</h2>
+                  <p className="text-xs text-zinc-600 mt-1">Explore Sehr Live, Vision-X AI, Storix, Angel Life, DramaVerse, and CardVerse under Soulverse Apps.</p>
+                </div>
+                <button 
+                  onClick={() => setActiveTab('UpcomingProjects')}
+                  className="group inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-indigo-600 hover:text-indigo-700 self-start sm:self-auto cursor-pointer"
+                >
+                  <span>View All 6 Projects</span>
+                  <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  { name: 'Sehr Live', status: 'Website Completed', link: 'https://sehrlive.soulverseapps.com', desc: 'HD Live Streaming & Social Entertainment' },
+                  { name: 'Vision-X AI', status: 'Website Completed', link: 'https://vision-x.soulverseapps.com', desc: 'AI Productivity & Automation Platform' },
+                  { name: 'Storix', status: 'Coming Soon', desc: 'AI-Powered Animated Storytelling' },
+                  { name: 'Angel Life', status: 'Coming Soon', desc: 'Modern Social Networking Platform' },
+                  { name: 'DramaVerse', status: 'Coming Soon', desc: 'Short Dramas & Web Series Platform' },
+                  { name: 'CardVerse', status: 'Coming Soon', desc: 'Smart Digital Identity & NFC Cards' }
+                ].map((item, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => setActiveTab('UpcomingProjects')}
+                    className="p-4 bg-white border-2 border-slate-900 rounded-none cursor-pointer hover:-translate-y-0.5 transition-all space-y-2 geo-shadow-offset-sm"
+                  >
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-sm font-black text-slate-900 uppercase font-display">{item.name}</h4>
+                      <span className={`text-[9px] font-mono font-bold px-2 py-0.5 ${item.status === 'Coming Soon' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-emerald-100 text-emerald-900 border border-emerald-300'}`}>
+                        {item.status}
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-600 font-medium line-clamp-2">{item.desc}</p>
+                    {item.link && (
+                      <p className="text-[10px] font-mono text-indigo-600 font-bold truncate mt-1">
+                        {item.link.replace('https://', '')}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+
             {/* Newsletter CTA container card */}
             {settings.sectionsVisibility?.cta !== false && (
               <section className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8">
@@ -354,6 +403,9 @@ const AppContent: React.FC = () => {
             )}
           </div>
         )}
+
+        {/* UPCOMING PROJECTS ROUTE */}
+        {(activeTab === 'UpcomingProjects' || activeTab === 'Upcoming') && <UpcomingProjectsSection />}
 
         {/* CONSULTING SERVICES ROUTE */}
         {activeTab === 'Services' && <ServicesSection />}

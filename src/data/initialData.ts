@@ -12,11 +12,47 @@ export const INITIAL_CATEGORIES: Category[] = [
 
 export const INITIAL_PRODUCTS: Product[] = [
   {
+    id: 'p0',
+    name: 'Pardais Live - Live Streaming Platform',
+    category: 'SaaS Products',
+    shortDesc: 'Flagship live streaming application platform operated under SAWAX ENTERPRISES PRIVATE LIMITED. Multi-guest video, PK battles, virtual gifting, and real-time wallet system.',
+    description: 'Pardais Live (https://pardaislive.com) is our premier live-streaming ecosystem engineered by SAWAX ENTERPRISES PRIVATE LIMITED. Built for massive scale with real-time WebRTC/RTMP streaming, virtual gift animations, host monetization, admin moderation dashboard, and native Android/iOS mobile applications.',
+    features: [
+      'High-definition multi-guest video & audio streaming rooms',
+      'Interactive host PK battles with real-time scoreboards',
+      'Virtual gifting system with integrated wallet & payout engine',
+      'Full administrative moderation dashboard and user management',
+      'Cross-platform Flutter & native Android app builds'
+    ],
+    price: 499.00,
+    discountPrice: 299.00,
+    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=800&q=80'
+    ],
+    screenshots: [
+      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80'
+    ],
+    demoVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
+    version: 'v3.5.0',
+    downloadFile: 'pardais-live-suite-v3.5.0.zip',
+    externalLink: 'https://pardaislive.com',
+    isFeatured: true,
+    isPopular: true,
+    isBestSeller: true,
+    rating: 5.0,
+    reviewsCount: 48,
+    reviews: [
+      { id: 'pr1', userName: 'Shahid Iqbal', rating: 5, comment: 'Pardais Live is an exceptional platform. Powerful streaming architecture and rock-solid backend.', date: '2026-07-20' }
+    ]
+  },
+  {
     id: 'p1',
     name: 'SoulAI - SaaS Chatbot & Content Generator',
     category: 'AI Projects',
     shortDesc: 'A complete React + Node.js web-based SaaS platform integrated with Gemini API. Multi-tenant with subscription tiers, credit-based usage tracking, and modern UI dashboard.',
-    description: 'SoulAI is a production-ready artificial intelligence generator that allows users to spin up writing assistants, custom coding tools, image generation forms, and conversational agents in minutes. It features full backend telemetry, stripe-ready checkout flows (integrated with our simulated system), automated pricing plans, and an interactive workspace interface.',
+    description: 'SoulAI is a production-ready artificial intelligence generator developed by SAWAX ENTERPRISES PRIVATE LIMITED for Soulverse Apps. Allows users to spin up writing assistants, custom coding tools, image generation forms, and conversational agents in minutes.',
     features: [
       'Gemini 2.5 Flash & Pro integrations built-in',
       'Interactive chats with context history storage',
@@ -28,24 +64,21 @@ export const INITIAL_PRODUCTS: Product[] = [
     discountPrice: 99.00,
     image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
     gallery: [
-      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'
     ],
     screenshots: [
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'
     ],
     demoVideo: 'https://www.w3schools.com/html/mov_bbb.mp4',
     version: 'v2.1.0',
     downloadFile: 'soulai-source-v2.1.0.zip',
-    externalLink: 'https://soulverseapps.com/demos/soulai',
+    externalLink: 'https://soulverseapps.com',
     isFeatured: true,
     isPopular: true,
     rating: 4.9,
     reviewsCount: 24,
     reviews: [
-      { id: 'r1', userName: 'Hamza Khan', rating: 5, comment: 'Incredible codebase. Clean structure and the Gemini integration is flawless.', date: '2026-06-12' },
-      { id: 'r2', userName: 'Sarah Jenkins', rating: 5, comment: 'Saved me 100+ hours of boilerplate. Built my own startup with this.', date: '2026-07-01' }
+      { id: 'r1', userName: 'Hamza Khan', rating: 5, comment: 'Incredible codebase from SAWAX ENTERPRISES PRIVATE LIMITED. Clean structure and the Gemini integration is flawless.', date: '2026-06-12' }
     ]
   },
   {
@@ -53,7 +86,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     name: 'VoltDrive - Flutter Cloud Storage App',
     category: 'Android Apps',
     shortDesc: 'Premium Flutter-based cloud storage application mimicking Google Drive with secure local encryption, offline caching, offline folder synchronization, and a beautiful UI.',
-    description: 'VoltDrive is a masterclass in modern mobile development. Engineered in Flutter, it connects to standard cloud endpoints to offer encrypted folder sync, multi-threaded downloads, biometric lock validation, sharing link managers, and smart media catalogs. Suitable for launching a personal storage business or integrating into existing corporate tools.',
+    description: 'VoltDrive is a masterclass in modern mobile development published under Soulverse Apps. Engineered in Flutter, it connects to standard cloud endpoints to offer encrypted folder sync, multi-threaded downloads, biometric lock validation, sharing link managers, and smart media catalogs.',
     features: [
       'Stunning cross-platform design (iOS & Android compatible)',
       'Offline file accessibility with local caching layers',
@@ -68,8 +101,7 @@ export const INITIAL_PRODUCTS: Product[] = [
       'https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?auto=format&fit=crop&w=800&q=80'
     ],
     screenshots: [
-      'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80'
     ],
     version: 'v1.4.3',
     downloadFile: 'voltdrive-flutter-v1.4.3.zip',
@@ -77,9 +109,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     isNewArrival: true,
     rating: 4.8,
     reviewsCount: 18,
-    reviews: [
-      { id: 'r3', userName: 'Zayn Malik', rating: 5, comment: 'The UI is extremely premium, animations are super smooth on both Android and iOS!', date: '2026-05-20' }
-    ]
+    reviews: []
   },
   {
     id: 'p3',
@@ -217,31 +247,36 @@ export const INITIAL_COUPONS: Coupon[] = [
 ];
 
 export const INITIAL_SETTINGS: WebsiteSettings = {
-  companyName: 'Soulverse Apps',
-  logoText: 'Soulverse',
-  announcement: '🔥 Summer Deal: Use coupon code SOULWELCOME to save 15% on any digital product source code!',
-  contactEmail: 'support@soulverseapps.com',
-  contactPhone: '+92 300 1234567',
-  contactAddress: 'Floor 4, TechHub Complex, Islamabad, Pakistan',
+  companyName: 'SAWAX ENTERPRISES PRIVATE LIMITED',
+  logoText: 'Soulverse Apps',
+  announcement: '🔥 Official Store of SAWAX ENTERPRISES PRIVATE LIMITED — Soulverse Apps & Pardais Live Streaming Platform!',
+  contactEmail: 'soulversepk@gmail.com',
+  contactPhone: '+92 300 2587667',
+  contactAddress: 'Lahore, Pakistan',
+  officialWebsite: 'https://soulverseapps.com',
+  pardaisLiveWebsite: 'https://pardaislive.com',
+  ceoContact: '+92 300 2587667',
+  registeredOffice: 'Lahore, Pakistan',
   facebookUrl: 'https://facebook.com/soulverseapps',
   twitterUrl: 'https://twitter.com/soulverseapps',
   githubUrl: 'https://github.com/soulverseapps',
-  linkedinUrl: 'https://linkedin.com/company/soulverseapps',
+  linkedinUrl: 'https://linkedin.com/company/sawax-enterprises',
   instagramUrl: 'https://instagram.com/soulverseapps',
   youtubeUrl: 'https://youtube.com/soulverseapps',
-  heroTitle: 'Enterprise Software & Digital Products Marketplace',
-  heroSubtitle: 'Build and scale your next digital venture with our production-ready source code, custom apps, AI platforms, and enterprise solutions.',
+  heroTitle: 'SAWAX ENTERPRISES PRIVATE LIMITED',
+  heroSubtitle: 'Official store for Soulverse Apps & Pardais Live. Custom mobile applications, live streaming software, AI systems, SaaS platforms, and enterprise source code.',
   heroImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
   logoImage: '',
   faviconUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=32&q=80',
-  whatsappNumber: '+923001234567',
-  businessEmail: 'info@soulverseapps.com',
-  supportEmail: 'support@soulverseapps.com',
-  copyrightText: 'All rights reserved.',
+  whatsappNumber: '+923002587667',
+  businessEmail: 'soulversepk@gmail.com',
+  supportEmail: 'soulversepk@gmail.com',
+  copyrightText: '© 2026 SAWAX ENTERPRISES PRIVATE LIMITED. All rights reserved.',
   
   navigationMenu: [
     { label: 'Home', tab: 'Home' },
     { label: 'Store', tab: 'Products' },
+    { label: 'Upcoming', tab: 'UpcomingProjects' },
     { label: 'Consulting', tab: 'Services' },
     { label: 'Portfolio', tab: 'Portfolio' },
     { label: 'Insights', tab: 'Blog' },
@@ -260,16 +295,16 @@ export const INITIAL_SETTINGS: WebsiteSettings = {
     cta: true
   },
 
-  metaTitle: 'Soulverse Apps - Code Marketplace & Software Agency',
-  metaDescription: 'Secure and clean React templates, Flutter applications, AI saas configurations, and software consulting services.',
-  metaKeywords: 'react templates, flutter source code, ai chatbot source code, saas template, download apk',
+  metaTitle: 'Soulverse Apps | SAWAX ENTERPRISES PRIVATE LIMITED',
+  metaDescription: 'Official website & digital store for SAWAX ENTERPRISES PRIVATE LIMITED. Publishers of Soulverse Apps and Pardais Live streaming platform.',
+  metaKeywords: 'SAWAX ENTERPRISES PRIVATE LIMITED, Soulverse Apps, Pardais Live, Android Apps, iOS Apps, Live Streaming, SaaS, Source Code',
   googleAnalyticsId: 'UA-12345678-9',
   
   smtpHost: 'smtp.soulverseapps.com',
   smtpPort: 587,
-  smtpUser: 'relay@soulverseapps.com',
+  smtpUser: 'soulversepk@gmail.com',
   smtpPass: '••••••••••••••••',
-  smtpSenderEmail: 'no-reply@soulverseapps.com',
+  smtpSenderEmail: 'soulversepk@gmail.com',
   
   notifyOnNewOrder: true,
   notifyOnNewMessage: true,
@@ -282,9 +317,9 @@ export const INITIAL_SETTINGS: WebsiteSettings = {
 export const INITIAL_PAGES: any[] = [
   {
     id: 'page1',
-    title: 'About Our Ecosystem',
+    title: 'About SAWAX ENTERPRISES PRIVATE LIMITED',
     slug: 'about-us',
-    content: 'We are a highly specialized software assembly house delivering premium, robust codebase assets designed to eliminate boilerplate and reduce software time-to-market. Our developers have engineered systems for tens of thousands of active users worldwide.',
+    content: 'SAWAX ENTERPRISES PRIVATE LIMITED is the legal company behind Soulverse Apps.<br/><br/>Soulverse Apps is our official digital application store where we develop, publish, distribute, and sell digital products including mobile applications, websites, source code, UI kits, AI products, SaaS platforms, APIs, subscriptions, and digital assets.<br/><br/>Pardais Live (https://pardaislive.com) is our flagship live-streaming application operated under SAWAX ENTERPRISES PRIVATE LIMITED.<br/><br/><strong>Registered Office:</strong> Lahore, Pakistan<br/><strong>CEO Contact:</strong> +92 300 2587667<br/><strong>Official Store Email:</strong> soulversepk@gmail.com',
     isActive: true,
     createdAt: '2026-01-01'
   },
@@ -292,15 +327,15 @@ export const INITIAL_PAGES: any[] = [
     id: 'page2',
     title: 'Privacy Policy',
     slug: 'privacy',
-    content: 'At Soulverse Apps, your data security is our supreme metric. We collect basic sign-in credentials strictly to verify ownership over acquired digital products and protect licenses. No analytical or behavioral telemetry is transmitted to commercial brokers.',
+    content: 'At SAWAX ENTERPRISES PRIVATE LIMITED (Soulverse Apps), accessible via https://soulverseapps.com, user privacy and code security are paramount. We process client data exclusively to deliver instant software downloads, issue developer licenses, and provide technical support.',
     isActive: true,
     createdAt: '2026-01-01'
   },
   {
     id: 'page3',
-    title: 'Terms of Digital Delivery',
+    title: 'Terms of Service',
     slug: 'terms',
-    content: 'Digital products, source code, and custom assemblies are transmitted to your personal portal profile instantly upon complete payment validation. Due to the raw textual nature of software materials, all acquisitions are final and non-refundable.',
+    content: 'All digital products, source codes, live streaming licenses (including Pardais Live), and software builds delivered by SAWAX ENTERPRISES PRIVATE LIMITED are subject to single or enterprise developer licensing terms. Contact soulversepk@gmail.com for enterprise inquiries.',
     isActive: true,
     createdAt: '2026-01-01'
   }
@@ -308,41 +343,40 @@ export const INITIAL_PAGES: any[] = [
 
 export const INITIAL_APPS: any[] = [
   {
+    id: 'app0',
+    name: 'Pardais Live - Live Streaming App',
+    description: 'Flagship live-streaming mobile application operated under SAWAX ENTERPRISES PRIVATE LIMITED. HD multi-guest audio/video rooms, PK battles, virtual gifts, host monetization, and real-time chat.',
+    icon: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=128&q=80',
+    screenshots: [
+      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80'
+    ],
+    apkFileUrl: '/downloads/pardais-live-v3.5.apk',
+    apkFileName: 'pardais-live-v3.5.apk',
+    playStoreUrl: 'https://pardaislive.com',
+    appStoreUrl: 'https://pardaislive.com',
+    version: 'v3.5.0',
+    releaseNotes: 'Official release of Pardais Live with enhanced multi-guest video streaming and gift animation acceleration.',
+    downloadsCount: 15400,
+    isActive: true,
+    landingPageContent: '# Pardais Live\nOfficial flagship live streaming platform operated by SAWAX ENTERPRISES PRIVATE LIMITED. Visit https://pardaislive.com for complete live streaming features.'
+  },
+  {
     id: 'app1',
     name: 'SoulAI Native - Android Assistant',
     description: 'Fully responsive Android client built in Kotlin & Jetpack Compose interfacing with our cloud chatbot modules. Features voice commands, dynamic chats, and home widgets.',
     icon: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=128&q=80',
     screenshots: [
-      'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80'
+      'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80'
     ],
     apkFileUrl: '/downloads/soulai-native-v1.0.apk',
     apkFileName: 'soulai-native-v1.0.apk',
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.soulverse.assistant',
-    appStoreUrl: 'https://apps.apple.com/app/soulverse-assistant',
+    playStoreUrl: 'https://soulverseapps.com',
+    appStoreUrl: 'https://soulverseapps.com',
     version: 'v1.0.2',
     releaseNotes: 'Initial stable release with full Gemini 2.5 context optimization and robust streaming text controls.',
     downloadsCount: 1420,
     isActive: true,
     landingPageContent: '# SoulAI Mobile App\nExperience ultimate intelligence right on your Android phone. Fully optimized layout, biometric locks, widgets, and offline history cache.'
-  },
-  {
-    id: 'app2',
-    name: 'VoltDrive - Flutter Mobile Cloud Client',
-    description: 'Beautiful Flutter cloud drive app. Includes secure biometrics, multi-thread downloading, automated camera backup sync, and offline catalog indexers.',
-    icon: 'https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?auto=format&fit=crop&w=128&q=80',
-    screenshots: [
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80'
-    ],
-    apkFileUrl: '/downloads/voltdrive-flutter-v1.4.apk',
-    apkFileName: 'voltdrive-flutter-v1.4.apk',
-    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.soulverse.voltdrive',
-    appStoreUrl: '',
-    version: 'v1.4.3',
-    releaseNotes: 'Added fingerprint sensor recognition and automated localized background backup scheduling.',
-    downloadsCount: 3820,
-    isActive: true,
-    landingPageContent: '# VoltDrive App\nThe ultimate decentralized cloud vault companion on your hand.'
   }
 ];
 
@@ -352,19 +386,9 @@ export const INITIAL_CONTACT_MESSAGES: any[] = [
     name: 'Tariq Mahmood',
     email: 'tariq@lahoreventures.pk',
     subject: 'Custom AI SaaS Platform Quote',
-    message: 'Hello, we are interested in deploying a private-label version of your SoulAI software matching our custom enterprise database. Can you schedule a consultation regarding backend integrations?',
+    message: 'Hello SAWAX ENTERPRISES PRIVATE LIMITED, we are interested in deploying a private-label version of your Pardais Live streaming platform matching our custom enterprise database. Can you schedule a consultation regarding backend integrations?',
     date: '2026-07-15 10:45 AM',
     isRead: false
-  },
-  {
-    id: 'msg2',
-    name: 'Elena Rostova',
-    email: 'elena.r@nordictemplates.com',
-    subject: 'Affiliate developer rights question',
-    message: 'Are there white-label developer rights included in the Nexus Admin package? We plan to deliver modified layouts to five local business clients.',
-    date: '2026-07-14 04:12 PM',
-    isRead: true,
-    replyText: 'Yes, the Aura and Nexus commercial licenses grant you rights to deploy modified derivatives to end clients as part of your agency services.'
   }
 ];
 
@@ -379,39 +403,22 @@ export const INITIAL_SUPPORT_REQUESTS: any[] = [
     id: 'ticket1',
     userEmail: 'rashid.pk@outlook.com',
     userName: 'Rashid Mahmood',
-    subject: 'Stripe webhook payment validation delay',
-    description: 'Hello, I completed the transaction for VoltDrive Flutter app but my download folder list says verification pending. Transaction reference is soul-trx-9841.',
+    subject: 'Pardais Live streaming build license',
+    description: 'Hello, I completed the transaction for Pardais Live streaming package. Transaction reference is soul-trx-9841.',
     priority: 'high',
     status: 'open',
     date: '2026-07-16 08:30 AM',
     replies: []
-  },
-  {
-    id: 'ticket2',
-    userEmail: 'sandra.dee@webdevs.org',
-    userName: 'Sandra Dee',
-    subject: 'Tailwind configuration warning in Next.js 15 template',
-    description: 'When running npm build I receive a minor warning about unused keyframes inside tailwind config. Is there an issue with compile targets?',
-    priority: 'low',
-    status: 'resolved',
-    date: '2026-07-13 11:20 AM',
-    replies: [
-      { author: 'Soulverse support', message: 'Hello Sandra, that keyframe is a minor unused utility which will not affect production assets. You can safely ignore it, or remove lines 24-28 in tailwind.config.', date: '2026-07-13 01:45 PM' }
-    ]
   }
 ];
 
 export const INITIAL_MEDIA_FILES: any[] = [
   { id: 'med1', name: 'soulai-banner.jpg', url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', type: 'image', size: '142 KB', uploadedAt: '2026-07-10' },
-  { id: 'med2', name: 'voltdrive-home.png', url: 'https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?auto=format&fit=crop&w=800&q=80', type: 'image', size: '98 KB', uploadedAt: '2026-07-12' },
-  { id: 'med3', name: 'aura-storefront.jpg', url: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?auto=format&fit=crop&w=800&q=80', type: 'image', size: '204 KB', uploadedAt: '2026-07-13' },
-  { id: 'med4', name: 'soulai-demo.mp4', url: 'https://www.w3schools.com/html/mov_bbb.mp4', type: 'video', size: '1.2 MB', uploadedAt: '2026-07-14' },
-  { id: 'med5', name: 'corporate-licensing.pdf', url: '#', type: 'document', size: '412 KB', uploadedAt: '2026-07-15' }
+  { id: 'med2', name: 'pardaislive-banner.png', url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80', type: 'image', size: '198 KB', uploadedAt: '2026-07-12' }
 ];
 
 export const INITIAL_STAFF: any[] = [
-  { id: 'stf1', name: 'Soulverse Administrator', email: 'admin@soulverseapps.com', role: 'admin', status: 'active', permissions: ['all'] },
-  { id: 'stf2', name: 'Junaid Khan (Developer)', email: 'junaid@soulverseapps.com', role: 'editor', status: 'active', permissions: ['manage_products', 'manage_apps', 'manage_blog'] },
-  { id: 'stf3', name: 'Ayesha Ahmed (Support)', email: 'ayesha@soulverseapps.com', role: 'viewer', status: 'active', permissions: ['view_orders', 'reply_support', 'reply_messages'] }
+  { id: 'stf1', name: 'SAWAX Executive Administrator', email: 'soulversepk@gmail.com', role: 'admin', status: 'active', permissions: ['all'] },
+  { id: 'stf2', name: 'SAWAX Development Lead', email: 'soulversepk@gmail.com', role: 'editor', status: 'active', permissions: ['manage_products', 'manage_apps', 'manage_blog'] }
 ];
 

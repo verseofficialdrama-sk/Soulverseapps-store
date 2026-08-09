@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { 
   Mail, Phone, MapPin, Github, Linkedin, Twitter, Facebook, 
-  FileText, Shield, ArrowUpRight, Download, Server
+  FileText, Shield, ArrowUpRight, Download, Server, Globe, Sparkles
 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
@@ -53,11 +53,15 @@ export const Footer: React.FC = () => {
               <div className="flex h-8 w-8 items-center justify-center rounded-none bg-slate-900 text-white font-black text-sm border-2 border-slate-900 shadow-[1px_1px_0px_0px_rgba(16,185,129,1)]">
                 S
               </div>
-              <span className="text-lg font-black text-slate-900 tracking-widest font-display uppercase">{settings.companyName || 'Soulverse Apps'}</span>
+              <span className="text-base font-black text-slate-900 tracking-wider font-display uppercase">{settings.companyName || 'SAWAX ENTERPRISES PRIVATE LIMITED'}</span>
             </div>
             <p className="max-w-xs text-xs text-slate-500 leading-relaxed font-bold">
-              Premium marketplace for enterprise mobile apps, AI SaaS blueprints, complete portals, and responsive UI kits. Certified and deployment-ready.
+              Official digital store for <strong>Soulverse Apps</strong> and <strong>Pardais Live</strong>. Mobile applications, live streaming software, AI systems, SaaS products, source code, and custom APIs.
             </p>
+            <div className="text-xs font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 p-2.5 max-w-xs">
+              <p>⚡ Flagship Live Platform:</p>
+              <a href="https://pardaislive.com" target="_blank" rel="noreferrer" className="underline font-black text-indigo-900 hover:text-indigo-600">https://pardaislive.com</a>
+            </div>
             <div className="flex space-x-3">
               {settings.facebookUrl && (
                 <a href={settings.facebookUrl} target="_blank" rel="noreferrer" className="hover:text-slate-900 text-slate-600 transition-colors bg-slate-50 border-2 border-slate-900 p-1.5 rounded-none shadow-[1.5px_1.5px_0px_0px_rgba(15,23,42,1)] hover:translate-x-0.5 hover:translate-y-0.5">
@@ -91,6 +95,11 @@ export const Footer: React.FC = () => {
                   <li>
                     <button onClick={() => setActiveTab('Products')} className="hover:text-slate-950 text-slate-500 hover:underline transition-colors text-xs text-left font-bold uppercase tracking-wider cursor-pointer">
                       Browse Store
+                    </button>
+                  </li>
+                  <li>
+                    <button onClick={() => setActiveTab('UpcomingProjects')} className="hover:text-indigo-600 text-indigo-600 font-extrabold hover:underline transition-colors text-xs text-left uppercase tracking-wider cursor-pointer flex items-center gap-1">
+                      <Sparkles className="h-3 w-3" /> Upcoming Projects
                     </button>
                   </li>
                   <li>
@@ -142,16 +151,20 @@ export const Footer: React.FC = () => {
               <h3 className="text-xs font-black text-slate-900 uppercase tracking-widest font-mono border-b-2 border-slate-900 pb-2">Support & Contacts</h3>
               <ul className="mt-4 space-y-3 text-xs text-slate-600 font-bold">
                 <li className="flex items-start gap-2">
-                  <MapPin className="h-4 w-4 text-slate-900 shrink-0 mt-0.5" />
-                  <span>{settings.contactAddress}</span>
+                  <MapPin className="h-4 w-4 text-indigo-600 shrink-0 mt-0.5" />
+                  <span><strong>Office:</strong> {settings.contactAddress || 'Lahore, Pakistan'}</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-slate-900 shrink-0" />
-                  <a href={`mailto:${settings.contactEmail}`} className="hover:text-slate-900 hover:underline transition-colors">{settings.contactEmail}</a>
+                  <Mail className="h-4 w-4 text-indigo-600 shrink-0" />
+                  <a href={`mailto:${settings.contactEmail || 'soulversepk@gmail.com'}`} className="hover:text-indigo-600 hover:underline transition-colors">{settings.contactEmail || 'soulversepk@gmail.com'}</a>
                 </li>
                 <li className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-slate-900 shrink-0" />
-                  <span>{settings.contactPhone}</span>
+                  <Phone className="h-4 w-4 text-indigo-600 shrink-0" />
+                  <span><strong>CEO Phone:</strong> {settings.contactPhone || '+92 300 2587667'}</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Globe className="h-4 w-4 text-indigo-600 shrink-0" />
+                  <a href="https://soulverseapps.com" target="_blank" rel="noreferrer" className="hover:text-indigo-600 hover:underline transition-colors">https://soulverseapps.com</a>
                 </li>
               </ul>
               

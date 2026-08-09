@@ -36,17 +36,24 @@ export const AboutSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto pt-6">
         <div className="space-y-5">
           <span className="text-[10px] uppercase font-black text-indigo-600 tracking-widest bg-indigo-50 border border-indigo-200 px-3 py-1 font-mono">
-            Meet Soulverse Apps
+            SAWAX ENTERPRISES PRIVATE LIMITED
           </span>
           <h1 className="text-3xl font-black text-slate-900 tracking-tight sm:text-4xl uppercase font-display leading-none">
-            Assembling Tomorrow’s Digital Infrastructure
+            Soulverse Apps & Pardais Live Platform
           </h1>
           <p className="text-sm font-medium text-slate-600 leading-relaxed font-sans">
-            At <strong>{settings.companyName || 'Soulverse Apps'}</strong>, we understand that building software from scratch is an unnecessary friction point. Our mission is to engineer high-performance, secure, and production-ready code blocks so you can bypass boilerplate setups and launch solutions in days.
+            <strong>SAWAX ENTERPRISES PRIVATE LIMITED</strong> is the legal company behind <strong>Soulverse Apps</strong>. 
+            Soulverse Apps is our official digital application store where we develop, publish, distribute, and sell digital products including mobile applications, websites, source code, UI kits, AI products, SaaS platforms, APIs, subscriptions, and digital assets.
           </p>
-          <p className="text-sm font-medium text-slate-400 leading-relaxed">
-            Every product available in our secure marketplace undergoes exhaustive performance audits, unit validation, and responsive mobile-first visual styling before publication.
+          <p className="text-sm font-medium text-slate-700 leading-relaxed bg-slate-50 border-2 border-slate-900 p-3">
+            <strong>Pardais Live</strong> (<a href="https://pardaislive.com" target="_blank" rel="noreferrer" className="text-indigo-600 underline font-bold">pardaislive.com</a>) is one of our flagship live-streaming applications operated under SAWAX ENTERPRISES PRIVATE LIMITED.
           </p>
+          <div className="pt-2 text-xs font-mono text-slate-600 space-y-1">
+            <p><strong>Registered Office:</strong> Lahore, Pakistan</p>
+            <p><strong>CEO Contact:</strong> +92 300 2587667</p>
+            <p><strong>Official Store Email:</strong> soulversepk@gmail.com</p>
+            <p><strong>Official Website:</strong> <a href="https://soulverseapps.com" target="_blank" rel="noreferrer" className="text-indigo-600 underline font-bold">soulverseapps.com</a></p>
+          </div>
         </div>
 
         <div className="relative aspect-[4/3] bg-slate-100 rounded-none overflow-hidden border-2 border-slate-900 shadow-md">

@@ -25,6 +25,7 @@ export const Header: React.FC<HeaderProps> = ({ onCartToggle, onLoginToggle }) =
   const defaultLinks = [
     { name: 'Home', tab: 'Home' },
     { name: 'Products', tab: 'Products' },
+    { name: 'Upcoming', tab: 'UpcomingProjects' },
     { name: 'Services', tab: 'Services' },
     { name: 'Portfolio', tab: 'Portfolio' },
     { name: 'Blog', tab: 'Blog' },

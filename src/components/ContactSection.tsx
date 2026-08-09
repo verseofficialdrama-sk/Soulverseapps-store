@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Mail, Phone, MapPin, Send, MessageSquare, ShieldAlert } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageSquare, Globe } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const { settings, addNotification } = useApp();
@@ -28,9 +28,11 @@ export const ContactSection: React.FC = () => {
   };
 
   const contactOptions = [
-    { label: 'Technical Support Email', value: settings.contactEmail, icon: <Mail className="h-5 w-5 text-indigo-600" /> },
-    { label: 'Sales & Inquiries Phone', value: settings.contactPhone, icon: <Phone className="h-5 w-5 text-indigo-600" /> },
-    { label: 'Headquarters Office', value: settings.contactAddress, icon: <MapPin className="h-5 w-5 text-indigo-600" /> }
+    { label: 'Official Store Email', value: settings.contactEmail || 'soulversepk@gmail.com', icon: <Mail className="h-5 w-5 text-indigo-600" /> },
+    { label: 'CEO Contact Phone', value: settings.contactPhone || '+92 300 2587667', icon: <Phone className="h-5 w-5 text-indigo-600" /> },
+    { label: 'Registered Office', value: settings.contactAddress || 'Lahore, Pakistan', icon: <MapPin className="h-5 w-5 text-indigo-600" /> },
+    { label: 'Official Store Website', value: 'https://soulverseapps.com', icon: <Globe className="h-5 w-5 text-indigo-600" />, href: 'https://soulverseapps.com' },
+    { label: 'Flagship Live Platform', value: 'https://pardaislive.com', icon: <Globe className="h-5 w-5 text-emerald-600" />, href: 'https://pardaislive.com' }
   ];
 
   return (
@@ -39,13 +41,13 @@ export const ContactSection: React.FC = () => {
       {/* Contact Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <span className="text-[10px] uppercase font-black text-indigo-600 tracking-widest bg-indigo-50 border border-indigo-200 px-3 py-1 font-mono">
-          Contact Soulverse
+          SAWAX ENTERPRISES PRIVATE LIMITED
         </span>
         <h1 className="text-3xl font-black text-slate-900 tracking-tight sm:text-4xl uppercase font-display leading-none">
-          Connect With Our Engineering Lab
+          Contact Soulverse Apps & Pardais Live
         </h1>
         <p className="text-sm font-medium text-slate-600 leading-relaxed">
-          Need assistance with a purchased codebase, custom development questions, or license upgrades? Leave a message or write to us directly.
+          Official contact portal for SAWAX ENTERPRISES PRIVATE LIMITED. Inquire about mobile apps, website development, AI products, live-streaming software, source code, or custom developer solutions.
         </p>
       </div>
 
@@ -63,7 +65,13 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-[9px] uppercase font-bold text-slate-500 tracking-widest font-mono">{opt.label}</p>
-                  <p className="text-xs text-slate-900 font-bold mt-0.5 leading-normal">{opt.value}</p>
+                  {opt.href ? (
+                    <a href={opt.href} target="_blank" rel="noreferrer" className="text-xs text-indigo-600 font-bold mt-0.5 leading-normal underline hover:text-indigo-800 block">
+                      {opt.value}
+                    </a>
+                  ) : (
+                    <p className="text-xs text-slate-900 font-bold mt-0.5 leading-normal">{opt.value}</p>
+                  )}
                 </div>
               </div>
             ))}

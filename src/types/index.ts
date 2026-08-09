@@ -116,6 +116,10 @@ export interface WebsiteSettings {
   contactEmail: string;
   contactPhone: string;
   contactAddress: string;
+  officialWebsite?: string;
+  pardaisLiveWebsite?: string;
+  ceoContact?: string;
+  registeredOffice?: string;
   facebookUrl?: string;
   twitterUrl?: string;
   githubUrl?: string;

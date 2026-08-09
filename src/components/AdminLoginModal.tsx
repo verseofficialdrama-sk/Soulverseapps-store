@@ -85,7 +85,7 @@ export const AdminLoginModal: React.FC<AdminLoginProps> = ({ inline = false }) =
             <input
               type="email"
               required
-              placeholder="admin@soulverseapps.com"
+              placeholder="soulversepk@gmail.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-transparent pl-10 pr-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none font-semibold font-mono"
