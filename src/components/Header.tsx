@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ onCartToggle, onLoginToggle }) =
   };
 
   return (
-    <header id="app-header" className="sticky top-0 z-40 w-full border-b-2 border-slate-900 bg-white/95 backdrop-blur-md">
+    <header id="app-header" className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/85 backdrop-blur-xl shadow-[0_8px_30px_rgba(15,23,42,.05)]">
       {/* Announcement Bar */}
       {settings.announcement && (
         <div className="w-full bg-slate-900 py-2 text-center text-[10px] font-bold tracking-widest text-white uppercase px-4 border-b-2 border-slate-900">
@@ -52,20 +52,20 @@ export const Header: React.FC<HeaderProps> = ({ onCartToggle, onLoginToggle }) =
         </div>
       )}
 
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center gap-8">
           <button 
             onClick={() => handleNavClick('Home')} 
             className="flex items-center gap-2 focus:outline-none"
           >
-            <div className="relative w-8 h-8 mr-1.5 bg-slate-900 rotate-45 flex items-center justify-center shrink-0 border border-slate-900 shadow-sm">
-              <div className="w-3.5 h-3.5 bg-indigo-500 rotate-12"></div>
+            <div className="relative w-9 h-9 mr-1.5 rounded-xl bg-gradient-to-br from-slate-950 via-emerald-700 to-cyan-500 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-500/20">
+              <div className="w-3.5 h-3.5 rounded-md bg-white/90 rotate-45"></div>
             </div>
-            <span className="text-xl font-black tracking-tighter text-slate-900 uppercase font-display">
+            <span className="text-xl font-black tracking-tighter text-slate-950 font-display">
               {settings.logoText || 'Soulverse'}
             </span>
-            <span className="text-[9px] font-black text-indigo-600 bg-indigo-50 border border-indigo-200 px-1.5 py-0.5 rounded-none uppercase font-mono">
+            <span className="text-[9px] font-black text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full uppercase font-mono">
               APPS
             </span>
           </button>
@@ -78,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({ onCartToggle, onLoginToggle }) =
                 onClick={() => handleNavClick(link.tab)}
                 className={`px-3.5 py-2 text-xs font-bold uppercase tracking-wider transition-all rounded-none ${
                   activeTab === link.tab
-                    ? 'text-slate-900 border-b-2 border-slate-900'
+                    ? 'text-emerald-700 bg-emerald-50 shadow-sm'
                     : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >

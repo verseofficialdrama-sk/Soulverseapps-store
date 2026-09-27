@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { Globe, ExternalLink, Sparkles, Clock, Video, Bot, BookOpen, Heart, Tv, CreditCard, ShieldCheck, Layers, ArrowUpRight } from 'lucide-react';
+import { Globe, ExternalLink, Sparkles, Clock, Video, Bot, BookOpen, Heart, Tv, CreditCard, ShieldCheck, Layers, ArrowUpRight, CheckCircle2, MessageCircle, Smartphone, Monitor, BadgeDollarSign } from 'lucide-react';
 
 interface UpcomingProject {
   id: string;
@@ -95,10 +95,10 @@ export const UpcomingProjectsSection: React.FC = () => {
           <span>SAWAX ENTERPRISES PRIVATE LIMITED</span>
         </div>
         <h1 className="text-3xl font-black text-slate-900 tracking-tight sm:text-5xl uppercase font-display leading-none">
-          Upcoming Projects Pipeline
+          Product Ecosystem & Upcoming Projects
         </h1>
         <p className="text-sm font-medium text-slate-600 leading-relaxed max-w-2xl mx-auto">
-          Explore our next-generation ecosystem of live streaming, artificial intelligence, animated storytelling, social networks, and smart identity solutions managed under the <strong>Soulverse Apps</strong> umbrella.
+          Explore completed products, active platforms, and upcoming projects managed under the <strong>Soulverse Apps</strong> umbrella. Completed products are clearly separated from projects that are still in development.
         </p>
       </div>
 
@@ -112,7 +112,7 @@ export const UpcomingProjectsSection: React.FC = () => {
             </h3>
           </div>
           <p className="text-xs text-slate-300 font-medium leading-relaxed max-w-3xl">
-            All the listed products are official projects of <strong>SAWAX ENTERPRISES PRIVATE LIMITED</strong> (Public Brand: <strong>Soulverse Apps</strong>) and are developed, published, and managed under our official ecosystem.
+            All listed products and projects are part of the official ecosystem of <strong>SAWAX ENTERPRISES PRIVATE LIMITED</strong> (Public Brand: <strong>Soulverse Apps</strong>). Ready products may be operated internally, offered to clients on request, or maintained as company products.
           </p>
         </div>
         <a
@@ -126,6 +126,112 @@ export const UpcomingProjectsSection: React.FC = () => {
           <ArrowUpRight className="h-4 w-4" />
         </a>
       </div>
+
+      {/* Ready & Live Products */}
+      <section className="space-y-6">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-black uppercase tracking-widest">
+              <CheckCircle2 className="h-4 w-4" />
+              Ready & Live Products
+            </div>
+            <h2 className="mt-3 text-3xl sm:text-4xl font-black text-slate-900 tracking-tight font-display">
+              Products Already <span className="text-emerald-600">Live</span>
+            </h2>
+            <p className="mt-2 max-w-3xl text-sm text-slate-600 leading-relaxed">
+              These products are no longer part of our upcoming pipeline. They are completed products operated under the Soulverse ecosystem and may be offered to clients as ready-to-deploy solutions. Pricing is provided on request rather than published as a fixed marketplace price.
+            </p>
+          </div>
+          <div className="hidden md:flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold shadow-lg">
+            <ShieldCheck className="h-4 w-4 text-emerald-400" />
+            Operated under company observation
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
+          {/* Pardais Party */}
+          <article className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.10)] hover:shadow-[0_28px_80px_rgba(15,23,42,0.16)] transition-all duration-300">
+            <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-violet-200/50 blur-3xl group-hover:bg-violet-300/60 transition-colors" />
+            <div className="absolute -left-16 bottom-0 h-40 w-40 rounded-full bg-cyan-100/70 blur-3xl" />
+            <div className="relative p-7 sm:p-8">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-500 text-white flex items-center justify-center shadow-lg shadow-violet-200">
+                    <Video className="h-7 w-7" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black text-slate-900">Pardais Party</h3>
+                    <p className="text-xs text-slate-500 font-medium mt-0.5">Live streaming & social entertainment platform</p>
+                  </div>
+                </div>
+                <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-emerald-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Live
+                </span>
+              </div>
+
+              <p className="mt-6 text-sm leading-7 text-slate-600">
+                Pardais Party is a completed live-streaming platform with social rooms, PK battles, virtual gifts, creator/host features, chat and real-time entertainment workflows. The product is already available through its web experience, PWA and Google Play release.
+              </p>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-700"><Smartphone className="h-3.5 w-3.5" /> Google Play</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-700"><Monitor className="h-3.5 w-3.5" /> Web App</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-700"><Globe className="h-3.5 w-3.5" /> PWA</span>
+              </div>
+
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href="https://pardaisparty.soulversapps.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-xs font-black text-white hover:bg-slate-800 transition-colors">
+                  Open Web App <ExternalLink className="h-4 w-4" />
+                </a>
+                <a href="#contact" className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-800 hover:border-slate-400 transition-colors">
+                  <BadgeDollarSign className="h-4 w-4 text-emerald-600" /> Ask for Price
+                </a>
+              </div>
+            </div>
+          </article>
+
+          {/* Pardais Lite */}
+          <article className="group relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.10)] hover:shadow-[0_28px_80px_rgba(15,23,42,0.16)] transition-all duration-300">
+            <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-cyan-200/50 blur-3xl group-hover:bg-cyan-300/60 transition-colors" />
+            <div className="absolute -left-16 bottom-0 h-40 w-40 rounded-full bg-emerald-100/70 blur-3xl" />
+            <div className="relative p-7 sm:p-8">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-emerald-500 text-white flex items-center justify-center shadow-lg shadow-cyan-200">
+                    <Layers className="h-7 w-7" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black text-slate-900">Pardais Lite</h3>
+                    <p className="text-xs text-slate-500 font-medium mt-0.5">Lightweight live social platform</p>
+                  </div>
+                </div>
+                <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-emerald-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Live
+                </span>
+              </div>
+
+              <p className="mt-6 text-sm leading-7 text-slate-600">
+                Pardais Lite is a completed and operational product in the Pardais ecosystem. It is available through the web/PWA experience and is also distributed to users through the company's supported WhatsApp channel.
+              </p>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-700"><Monitor className="h-3.5 w-3.5" /> Web / PWA</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-700"><MessageCircle className="h-3.5 w-3.5" /> WhatsApp Distribution</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-700"><ShieldCheck className="h-3.5 w-3.5" /> Operational</span>
+              </div>
+
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href="https://pardaislite.soulverseapps.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-xs font-black text-white hover:bg-slate-800 transition-colors">
+                  Open Web App <ExternalLink className="h-4 w-4" />
+                </a>
+                <a href="#contact" className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs font-black text-slate-800 hover:border-slate-400 transition-colors">
+                  <BadgeDollarSign className="h-4 w-4 text-emerald-600" /> Ask for Price
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
