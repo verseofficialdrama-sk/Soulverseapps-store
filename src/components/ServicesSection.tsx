@@ -69,6 +69,28 @@ export const ServicesSection: React.FC = () => {
         ))}
       </div>
 
+      <section className="max-w-5xl mx-auto bg-slate-50 border-2 border-slate-900 p-7 md:p-9 space-y-5">
+        <div>
+          <span className="text-[10px] uppercase font-black text-indigo-700 tracking-widest font-mono">How custom projects are handled</span>
+          <h2 className="text-2xl font-black text-slate-900 uppercase font-display mt-2">From requirement to production</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            ['01', 'Discovery', 'We clarify the product goal, target users, required screens and integrations.'],
+            ['02', 'Architecture', 'We select the application structure, data model, APIs and deployment approach.'],
+            ['03', 'Implementation', 'Features are developed in testable stages with regular review of the main workflows.'],
+            ['04', 'Release', 'We test, document and prepare the agreed product for deployment and handover.']
+          ].map(([n, title, text]) => (
+            <div key={n} className="bg-white border-2 border-slate-900 p-4 space-y-2">
+              <span className="text-xs font-black text-indigo-700 font-mono">{n}</span>
+              <h3 className="font-black text-slate-900 uppercase font-display">{title}</h3>
+              <p className="text-xs text-slate-600 leading-6">{text}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-slate-500 leading-6">Project estimates are indicative only. Final scope, delivery schedule, integrations, hosting and support are confirmed in writing before development begins.</p>
+      </section>
+
       {/* Dynamic Project Estimator */}
       <div className="border-2 border-slate-900 bg-white rounded-none p-6 md:p-8 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 relative overflow-hidden geo-shadow-offset">
         <div className="absolute top-0 right-0 h-40 w-40 rounded-full bg-indigo-500/5 blur-[50px] pointer-events-none" />

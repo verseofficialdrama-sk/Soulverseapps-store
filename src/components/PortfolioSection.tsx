@@ -17,7 +17,7 @@ export const PortfolioSection: React.FC = () => {
           Engineered Solutions In Action
         </h1>
         <p className="text-sm font-medium text-slate-600 leading-relaxed">
-          Browse through live client environments and custom application deliverables engineered from the ground up by our enterprise consultancy teams.
+          Explore selected software concepts and application work from the Soulverse Apps product ecosystem. Where a project is internal or in development, we label it as such rather than presenting it as a client engagement.
         </p>
       </div>
 
@@ -47,7 +47,7 @@ export const PortfolioSection: React.FC = () => {
                 <div className="flex gap-4 text-[9px] text-slate-500 font-mono font-bold uppercase tracking-wider">
                   <div className="flex items-center gap-1">
                     <User className="h-3.5 w-3.5 text-indigo-600" />
-                    <span>Client: {item.client}</span>
+                    <span>Project: {item.client}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Calendar className="h-3.5 w-3.5 text-indigo-600" />
@@ -64,7 +64,7 @@ export const PortfolioSection: React.FC = () => {
 
               <div className="pt-4 border-t border-slate-200 flex justify-end">
                 <button 
-                  onClick={() => alert(`Redirecting to live preview environment for client: ${item.client}`)}
+                  onClick={() => alert(`Opening project information for: ${item.title}`)}
                   className="px-4 py-2 bg-slate-900 hover:bg-slate-800 border-2 border-slate-900 text-white rounded-none text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 cursor-pointer transition-all shadow-[2px_2px_0px_0px_rgba(16,185,129,1)] hover:translate-x-0.5 hover:translate-y-0.5"
                 >
                   <span>Explore Case Study</span>

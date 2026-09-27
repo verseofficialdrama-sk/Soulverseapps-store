@@ -75,9 +75,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenDetails
         <div className="flex items-center justify-between gap-2 mb-1.5">
           {/* Star rating */}
           <div className="flex items-center gap-1">
-            <Star className="h-3.5 w-3.5 fill-current text-amber-500" />
-            <span className="text-xs font-bold text-slate-800">{product.rating}</span>
-            <span className="text-[10px] text-slate-400 font-semibold">({product.reviewsCount})</span>
+            {product.reviewsCount > 0 ? (
+              <>
+                <Star className="h-3.5 w-3.5 fill-current text-amber-500" />
+                <span className="text-xs font-bold text-slate-800">{product.rating}</span>
+                <span className="text-[10px] text-slate-400 font-semibold">({product.reviewsCount})</span>
+              </>
+            ) : (
+              <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">No reviews yet</span>
+            )}
           </div>
           {/* Version badge */}
           <span className="text-[10px] text-slate-500 font-mono font-bold">{product.version}</span>

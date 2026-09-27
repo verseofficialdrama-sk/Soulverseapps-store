@@ -40,12 +40,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     externalLink: 'https://pardaislive.com',
     isFeatured: true,
     isPopular: true,
-    isBestSeller: true,
-    rating: 5.0,
-    reviewsCount: 48,
-    reviews: [
-      { id: 'pr1', userName: 'Shahid Iqbal', rating: 5, comment: 'Pardais Live is an exceptional platform. Powerful streaming architecture and rock-solid backend.', date: '2026-07-20' }
-    ]
+    isBestSeller: false,
+    rating: 0,
+    reviewsCount: 0,
+    reviews: []
   },
   {
     id: 'p1',
@@ -75,11 +73,9 @@ export const INITIAL_PRODUCTS: Product[] = [
     externalLink: 'https://soulverseapps.com',
     isFeatured: true,
     isPopular: true,
-    rating: 4.9,
-    reviewsCount: 24,
-    reviews: [
-      { id: 'r1', userName: 'Hamza Khan', rating: 5, comment: 'Incredible codebase from SAWAX ENTERPRISES PRIVATE LIMITED. Clean structure and the Gemini integration is flawless.', date: '2026-06-12' }
-    ]
+    rating: 0,
+    reviewsCount: 0,
+    reviews: []
   },
   {
     id: 'p2',
@@ -136,7 +132,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     downloadFile: 'aura-commerce-v1.0.0.zip',
     externalLink: 'https://soulverseapps.com/demos/auracommerce',
     isPopular: true,
-    isBestSeller: true,
+    isBestSeller: false,
     rating: 4.7,
     reviewsCount: 12,
     reviews: []
@@ -201,7 +197,7 @@ export const INITIAL_PORTFOLIO: PortfolioItem[] = [
     title: 'CareSync - Digital Health iOS App',
     category: 'iOS Apps',
     image: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=80',
-    client: 'CareSync Healthcare LLC',
+    client: 'Internal product concept',
     year: '2025',
     description: 'A comprehensive medical tracking and patient scheduling system that lets users connect securely with consulting physicians.'
   },
@@ -210,11 +206,75 @@ export const INITIAL_PORTFOLIO: PortfolioItem[] = [
     title: 'Finflow - SaaS Accounting Platform',
     category: 'SaaS Products',
     image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
-    client: 'Finflow Global',
+    client: 'Internal SaaS concept',
     year: '2026',
     description: 'An AI-powered accounting companion designed for remote agencies to calculate tax, generate invoices, and log team expenses.'
   }
 ];
+
+const ADDITIONAL_BLOG_POSTS: BlogPost[] = [
+  {
+    id: 'b3', title: 'How to Evaluate a Software Source-Code Package Before Buying',
+    excerpt: 'A practical checklist for checking architecture, dependencies, documentation, licensing and deployment requirements before purchasing a source-code package.',
+    content: `Buying source code is different from buying a finished consumer application. A source package should be evaluated as a development starting point. Before purchasing, identify the framework and version, inspect the dependency list, confirm the build instructions, and check whether the package includes the backend or only the client application.\n\nDocumentation is equally important. Look for installation steps, environment-variable requirements, database setup, authentication configuration and deployment notes. A package that runs only in the seller's environment can require substantial additional work.\n\nLicensing should be reviewed separately from technical quality. Confirm how many projects or clients the license covers, whether redistribution is allowed, and what type of support or updates are included. Keeping these checks separate helps a buyer make a realistic estimate of the total development effort.`,
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80', category: 'Developer Guides', author: 'Soulverse Engineering Team', date: 'September 18, 2026', readTime: '7 min read'
+  },
+  {
+    id: 'b4', title: 'Firebase Authentication: A Practical Production Checklist',
+    excerpt: 'The configuration decisions that matter when moving Firebase Authentication from a prototype to a production application.',
+    content: `Authentication is more than adding a login button. A production Firebase implementation should define which sign-in providers are enabled, how account recovery works, how verified email addresses are handled, and which domains are allowed to use the application.\n\nFirestore and other backend resources should be protected with rules that match the application's actual authorization model. Client-side checks can improve user experience, but they should not be treated as the security boundary. Sensitive operations should be protected by server-side authorization.\n\nBefore launch, test registration, login, logout, password recovery, account deletion and access to protected resources. Also review error messages so they provide useful guidance without exposing unnecessary internal information.`,
+    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80', category: 'Web Development', author: 'Soulverse Engineering Team', date: 'September 14, 2026', readTime: '6 min read'
+  },
+  {
+    id: 'b5', title: 'What Makes a SaaS Landing Page Useful?',
+    excerpt: 'A useful SaaS landing page explains the product, audience, workflow, limitations and next step without relying on vague marketing claims.',
+    content: `A strong SaaS landing page answers practical questions quickly. Visitors should understand what the product does, who it is designed for, what problem it addresses and what they can do next. Screenshots, feature explanations and examples are more useful when they are connected to a clear workflow.\n\nTrust information should also be easy to find. A company identity, contact method, privacy policy, terms and support expectations help visitors understand who operates the service. Product pages should distinguish available features from planned features so that users are not confused about current availability.\n\nFinally, performance matters. Compress large images, avoid unnecessary scripts, provide useful page titles and descriptions, and make the primary navigation usable on mobile screens.`,
+    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=800&q=80', category: 'Product Design', author: 'Soulverse Engineering Team', date: 'September 10, 2026', readTime: '5 min read'
+  },
+  {
+    id: 'b6', title: 'React Frontend Architecture for Small Software Teams',
+    excerpt: 'A straightforward approach to organizing components, state, data and routes without over-engineering a small React application.',
+    content: `Small teams benefit from simple boundaries. Components should focus on presentation and user interaction, while shared application state can live in a clearly defined context or state layer. Data structures should be typed so that product, user and API changes are visible during development.\n\nRoutes and major sections should have predictable names. Reusable cards, buttons, forms and dialogs should be extracted when repetition becomes meaningful rather than creating abstractions for every small element.\n\nA practical architecture is one that another developer can understand quickly. Clear folders, consistent naming, limited side effects and short documentation usually provide more value than a complex pattern that the team does not need.`,
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80', category: 'Web Development', author: 'Soulverse Engineering Team', date: 'September 6, 2026', readTime: '7 min read'
+  },
+  {
+    id: 'b7', title: 'API Integration Basics: Designing for Errors and Timeouts',
+    excerpt: 'Successful API integration requires handling failures as carefully as successful responses.',
+    content: `An API call can fail for many reasons: an invalid request, authentication failure, rate limiting, a server error or a network timeout. Frontends should not assume that every response is valid JSON or that a request will always finish quickly.\n\nA resilient integration checks the HTTP status, content type and response body before parsing it. User-facing messages should explain what happened in plain language while detailed diagnostic information can be logged separately. Timeouts and retry policies should be used carefully so that a temporary failure does not become a flood of duplicate requests.\n\nFor sensitive operations, the server should validate input again rather than trusting values supplied by the browser. This keeps the API boundary predictable and reduces accidental data exposure.`,
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80', category: 'APIs & Backend', author: 'Soulverse Engineering Team', date: 'September 2, 2026', readTime: '6 min read'
+  },
+  {
+    id: 'b8', title: 'Cloudflare Pages Deployment Checklist for Vite',
+    excerpt: 'A deployment checklist for Vite applications covering build commands, output directories, environment variables and custom domains.',
+    content: `A Vite application on Cloudflare Pages generally needs a reproducible build command and a correct output directory. Before deployment, verify that the project installs successfully with the selected package manager and that the production build completes without warnings that hide real errors.\n\nEnvironment variables deserve special attention. Browser-exposed variables normally use the VITE_ prefix, while private API keys must stay on a trusted server. A frontend should never contain a secret credential simply because the value is needed by a feature.\n\nAfter deployment, test the custom domain, HTTPS, client-side routes, forms, images and any API calls to external services. Keep a simple rollback path by retaining the last known working deployment.`,
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80', category: 'Deployment', author: 'Soulverse Engineering Team', date: 'August 28, 2026', readTime: '5 min read'
+  },
+  {
+    id: 'b9', title: 'Designing Product Pages That Help Developers Decide',
+    excerpt: 'Product pages should explain what is included, what is required and what the buyer can realistically do with a software package.',
+    content: `A developer evaluating a source package needs more than a screenshot. A useful product page explains the framework, major features, supported platforms, installation requirements, version information and what is not included.\n\nScreenshots should show real product interfaces whenever possible. Supporting text can explain the purpose of each screen and the workflow it belongs to. If a demo is available, link to it clearly and distinguish a live demo from a static preview.\n\nPricing should be presented together with the license scope and delivery method. This reduces misunderstandings and gives the customer enough information to decide whether the product matches their project.`,
+    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800&q=80', category: 'Product Design', author: 'Soulverse Engineering Team', date: 'August 24, 2026', readTime: '6 min read'
+  },
+  {
+    id: 'b10', title: 'AI Features in Web Apps: Where the API Key Should Live',
+    excerpt: 'Why browser code should not contain private AI credentials and how a server-side API boundary can protect them.',
+    content: `AI features often look simple in a browser: send a prompt and display the response. The security model is more important than the first prototype. A private provider key should not be embedded in frontend JavaScript because browser code can be inspected by users.\n\nA common architecture places the provider call behind a server endpoint. The browser sends validated input to that endpoint, the server applies limits and safety checks, and the server communicates with the AI provider using a private credential.\n\nProduction systems should also consider rate limits, maximum input sizes, logging, error handling and abuse prevention. These controls protect both the service and the customer experience.`,
+    image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80', category: 'AI Projects', author: 'Soulverse Engineering Team', date: 'August 20, 2026', readTime: '6 min read'
+  },
+  {
+    id: 'b11', title: 'Mobile App Release Planning: From Prototype to Store',
+    excerpt: 'A practical release sequence for testing, signing, store metadata, privacy information and post-release monitoring.',
+    content: `Moving from a prototype to a store release involves more than generating an APK or app bundle. First, test the core workflows on real devices and document known limitations. Then prepare the application identity, signing configuration, screenshots, descriptions, privacy information and required store declarations.\n\nRelease testing should cover login, network failures, permissions, notifications, payments where applicable and the behavior of the application after an update. A small closed-testing group can expose issues that are difficult to reproduce during local development.\n\nAfter release, monitor crashes, user feedback and support requests. A release process becomes much easier when version numbers, release notes and rollback procedures are maintained consistently.`,
+    image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80', category: 'Mobile Development', author: 'Soulverse Engineering Team', date: 'August 16, 2026', readTime: '7 min read'
+  },
+  {
+    id: 'b12', title: 'Database Planning for Growing Web Applications',
+    excerpt: 'How to think about data ownership, indexes, validation and backups before a small web application grows.',
+    content: `Database design starts with ownership. Each important record should have a clear purpose, an identifier and a predictable relationship to other records. Validation should happen at the application boundary and, where supported, through database constraints or rules.\n\nIndexes can make common queries much faster, but unnecessary indexes add write and storage overhead. Start with the queries the application actually needs and measure performance as the dataset grows.\n\nBackups and recovery should be planned before they are needed. A backup is useful only when the team knows where it is stored, how long it is retained and how to restore it safely.`,
+    image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80', category: 'APIs & Backend', author: 'Soulverse Engineering Team', date: 'August 12, 2026', readTime: '5 min read'
+  }
+];
+
 
 export const INITIAL_BLOG: BlogPost[] = [
   {
@@ -238,8 +298,10 @@ export const INITIAL_BLOG: BlogPost[] = [
     author: 'Ayesha Ahmed',
     date: 'June 28, 2026',
     readTime: '8 min read'
-  }
+  },
+  ...ADDITIONAL_BLOG_POSTS
 ];
+
 
 export const INITIAL_COUPONS: Coupon[] = [
   { code: 'SOULWELCOME', discountType: 'percentage', discountValue: 15, isActive: true },
@@ -298,7 +360,7 @@ export const INITIAL_SETTINGS: WebsiteSettings = {
   metaTitle: 'Soulverse Apps | SAWAX ENTERPRISES PRIVATE LIMITED',
   metaDescription: 'Official website & digital store for SAWAX ENTERPRISES PRIVATE LIMITED. Publishers of Soulverse Apps and Pardais Live streaming platform.',
   metaKeywords: 'SAWAX ENTERPRISES PRIVATE LIMITED, Soulverse Apps, Pardais Live, Android Apps, iOS Apps, Live Streaming, SaaS, Source Code',
-  googleAnalyticsId: 'UA-12345678-9',
+  googleAnalyticsId: '',
   
   smtpHost: 'smtp.soulverseapps.com',
   smtpPort: 587,

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /soulverse-admin
+Sitemap: https://soulverseapps.com/sitemap.xml

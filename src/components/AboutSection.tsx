@@ -5,113 +5,82 @@ import { Award, ShieldAlert, Sparkles, Star, Users2 } from 'lucide-react';
 export const AboutSection: React.FC = () => {
   const { settings } = useApp();
 
-  const milestones = [
-    { label: 'Platform projects launched', value: '450+' },
-    { label: 'Developer active licenses', value: '3,800+' },
-    { label: 'Total custom code builds', value: '180+' },
-    { label: 'Support SLA satisfaction', value: '99.4%' }
-  ];
-
-  const testimonials = [
-    {
-      id: 1,
-      name: 'Muhammad Haris',
-      role: 'Lead Flutter Architect, TechSargodha',
-      comment: 'Soulverse Apps source codes are some of the cleanest on the market. Extremely well-documented, making client integration seamless. Saving weeks of dev cycles.',
-      rating: 5
-    },
-    {
-      id: 2,
-      name: 'Chloe Simmons',
-      role: 'SaaS Product Owner, SyncStack',
-      comment: 'Their Next.js Headless template represents a masterclass in modern styling and performance scoring. Perfect Lighthouse metrics out-of-the-box.',
-      rating: 5
-    }
+  const focusAreas = [
+    { title: 'Digital Products', text: 'We publish software products, mobile applications, web templates, source-code packages, APIs and developer resources through the Soulverse Apps store.' },
+    { title: 'Custom Engineering', text: 'Our development services cover mobile applications, web platforms, SaaS products, API integrations, authentication, databases and selected AI-powered workflows.' },
+    { title: 'Product Development', text: 'We take products from concept and interface planning through implementation, testing, deployment and post-release improvement.' },
+    { title: 'Technical Resources', text: 'Our Insights section documents practical lessons about software architecture, security, deployment, performance and product development.' }
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-16 min-h-screen">
-      
-      {/* Brand Profile Hero */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto pt-6">
-        <div className="space-y-5">
-          <span className="text-[10px] uppercase font-black text-indigo-600 tracking-widest bg-indigo-50 border border-indigo-200 px-3 py-1 font-mono">
-            SAWAX ENTERPRISES PRIVATE LIMITED
-          </span>
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight sm:text-4xl uppercase font-display leading-none">
-            Soulverse Apps & Pardais Live Platform
-          </h1>
-          <p className="text-sm font-medium text-slate-600 leading-relaxed font-sans">
-            <strong>SAWAX ENTERPRISES PRIVATE LIMITED</strong> is the legal company behind <strong>Soulverse Apps</strong>. 
-            Soulverse Apps is our official digital application store where we develop, publish, distribute, and sell digital products including mobile applications, websites, source code, UI kits, AI products, SaaS platforms, APIs, subscriptions, and digital assets.
-          </p>
-          <p className="text-sm font-medium text-slate-700 leading-relaxed bg-slate-50 border-2 border-slate-900 p-3">
-            <strong>Pardais Live</strong> (<a href="https://pardaislive.com" target="_blank" rel="noreferrer" className="text-indigo-600 underline font-bold">pardaislive.com</a>) is one of our flagship live-streaming applications operated under SAWAX ENTERPRISES PRIVATE LIMITED.
-          </p>
-          <div className="pt-2 text-xs font-mono text-slate-600 space-y-1">
-            <p><strong>Registered Office:</strong> Lahore, Pakistan</p>
-            <p><strong>CEO Contact:</strong> +92 300 2587667</p>
-            <p><strong>Official Store Email:</strong> soulversepk@gmail.com</p>
-            <p><strong>Official Website:</strong> <a href="https://soulverseapps.com" target="_blank" rel="noreferrer" className="text-indigo-600 underline font-bold">soulverseapps.com</a></p>
+    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-14 min-h-screen">
+      <section className="max-w-4xl mx-auto text-center space-y-5">
+        <span className="inline-flex text-[10px] uppercase font-black text-indigo-700 tracking-widest bg-indigo-50 border border-indigo-200 px-3 py-1 font-mono">
+          Company Profile
+        </span>
+        <h1 className="text-3xl font-black text-slate-900 tracking-tight sm:text-5xl font-display leading-tight">
+          Soulverse Apps is a software product brand of SAWAX ENTERPRISES PRIVATE LIMITED.
+        </h1>
+        <p className="text-sm font-medium text-slate-600 leading-7">
+          SAWAX ENTERPRISES PRIVATE LIMITED is a Pakistan-registered software company operating the Soulverse Apps digital product ecosystem. The website is used to present software products, developer resources, application projects, custom development services and technical information.
+        </p>
+        <p className="text-sm font-medium text-slate-600 leading-7">
+          We focus on practical software products rather than a single technology stack. Depending on the project, our work can include React and web applications, native Android development, Flutter-based products, REST APIs, Firebase, PostgreSQL, real-time communication and AI integrations.
+        </p>
+      </section>
+
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {focusAreas.map((item) => (
+          <article key={item.title} className="bg-white border-2 border-slate-900 p-6 geo-shadow-offset space-y-3">
+            <h2 className="text-lg font-black text-slate-900 uppercase font-display">{item.title}</h2>
+            <p className="text-sm text-slate-600 leading-7">{item.text}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="max-w-5xl mx-auto bg-slate-900 text-white p-7 md:p-9 border-2 border-slate-900 geo-shadow-offset space-y-5">
+        <div>
+          <span className="text-[10px] uppercase font-black text-emerald-400 tracking-widest font-mono">Our flagship project</span>
+          <h2 className="text-2xl font-black uppercase font-display mt-2">Pardais Live</h2>
+        </div>
+        <p className="text-sm text-slate-300 leading-7">
+          Pardais Live is a live-streaming and social entertainment product operated within the SAWAX ENTERPRISES PRIVATE LIMITED ecosystem. The project includes real-time audio/video experiences, social interaction, virtual gifts, creator features and supporting platform infrastructure.
+        </p>
+        <a href="https://pardaislive.com" target="_blank" rel="noreferrer" className="inline-flex items-center px-4 py-2.5 bg-white text-slate-900 font-bold text-xs uppercase tracking-wider hover:bg-emerald-50 transition-colors">
+          Visit Pardais Live
+        </a>
+      </section>
+
+      <section className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white border-2 border-slate-900 p-6 space-y-4">
+          <h2 className="text-xl font-black text-slate-900 uppercase font-display">How we work</h2>
+          <ol className="space-y-3 text-sm text-slate-600 leading-6 list-decimal list-inside">
+            <li>Define the product goal, audience and required functionality.</li>
+            <li>Plan the interface, data model, integrations and deployment approach.</li>
+            <li>Implement the product in small, testable features.</li>
+            <li>Test core workflows and resolve deployment or integration issues.</li>
+            <li>Prepare the product for release and provide ongoing technical support where agreed.</li>
+          </ol>
+        </div>
+        <div className="bg-slate-50 border-2 border-slate-900 p-6 space-y-4">
+          <h2 className="text-xl font-black text-slate-900 uppercase font-display">Company information</h2>
+          <div className="text-sm text-slate-600 leading-7 space-y-2">
+            <p><strong>Legal name:</strong> {settings.companyName}</p>
+            <p><strong>Brand:</strong> Soulverse Apps</p>
+            <p><strong>Registered office:</strong> {settings.registeredOffice || settings.contactAddress}</p>
+            <p><strong>Country:</strong> Pakistan</p>
+            <p><strong>Website:</strong> soulverseapps.com</p>
+            <p><strong>Email:</strong> {settings.contactEmail}</p>
           </div>
         </div>
+      </section>
 
-        <div className="relative aspect-[4/3] bg-slate-100 rounded-none overflow-hidden border-2 border-slate-900 shadow-md">
-          <img 
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" 
-            alt="Soulverse team meeting" 
-            className="w-full h-full object-cover" 
-            referrerPolicy="no-referrer"
-          />
-        </div>
-      </div>
-
-      {/* Corporate core milestones */}
-      <div className="bg-white border-2 border-slate-900 rounded-none p-6 md:p-8 max-w-5xl mx-auto geo-shadow-offset">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
-          {milestones.map((ms, i) => (
-            <div key={i} className="pt-4 lg:pt-0 first:pt-0">
-              <p className="text-4xl font-black text-slate-900 tracking-tight font-display">{ms.value}</p>
-              <p className="text-[9px] uppercase font-bold text-slate-500 tracking-widest mt-1 font-mono">{ms.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Customer Testimonials Slider */}
-      <div className="space-y-8 max-w-5xl mx-auto">
-        <div className="text-center space-y-2">
-          <span className="text-[10px] uppercase font-black text-indigo-600 tracking-widest bg-indigo-50 border border-indigo-200 px-3 py-1 font-mono">
-            Social Proof
-          </span>
-          <h2 className="text-2xl font-black text-slate-900 tracking-tight uppercase font-display">Vouched by Developers Globally</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {testimonials.map((test) => (
-            <div key={test.id} className="p-6 bg-white border-2 border-slate-900 rounded-none space-y-4 geo-shadow-offset">
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, idx) => (
-                  <Star key={idx} className="h-4 w-4 fill-current text-amber-500" />
-                ))}
-              </div>
-              <p className="text-xs text-slate-600 font-medium leading-relaxed font-sans">
-                &ldquo;{test.comment}&rdquo;
-              </p>
-              <div className="flex items-center gap-3 pt-3 border-t border-slate-200">
-                <div className="h-8 w-8 bg-slate-900 rounded-none flex items-center justify-center text-white text-xs font-black">
-                  {test.name.charAt(0)}
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-slate-900">{test.name}</p>
-                  <p className="text-[10px] text-slate-500 font-semibold font-mono uppercase">{test.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
+      <section className="max-w-4xl mx-auto text-center border-t-2 border-slate-900 pt-8">
+        <h2 className="text-xl font-black text-slate-900 uppercase font-display">Independent information and transparency</h2>
+        <p className="text-sm text-slate-600 leading-7 mt-3">
+          Product specifications, pricing, availability and project status can change as software is updated. We aim to keep product pages, policies and technical articles current. Information on this website is provided for general product and development purposes and should be reviewed together with the applicable license or service agreement before purchase.
+        </p>
+      </section>
     </div>
   );
 };

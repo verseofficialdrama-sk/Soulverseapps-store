@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { Search, Sparkles, Send, ShieldCheck, Zap, Globe, Cpu } from 'lucide-react';
+import { Search, Sparkles, Send, Zap, Globe, Cpu } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const { settings, searchQuery, setSearchQuery, products, setActiveTab } = useApp();
@@ -22,10 +22,10 @@ export const Hero: React.FC = () => {
   };
 
   const stats = [
-    { label: 'Source code items', value: `${products.length}+`, icon: <Cpu className="h-4 w-4 text-indigo-400" /> },
-    { label: 'Average rating', value: '4.85 / 5', icon: <Sparkles className="h-4 w-4 text-amber-400" /> },
-    { label: 'Happy Customers', value: '1,420+', icon: <Globe className="h-4 w-4 text-emerald-400" /> },
-    { label: 'Instant Delivery', value: '100% Sync', icon: <Zap className="h-4 w-4 text-violet-400" /> }
+    { label: 'Digital Products', value: `${products.length}`, icon: <Cpu className="h-4 w-4 text-indigo-400" /> },
+    { label: 'Custom Development', value: 'Available', icon: <Sparkles className="h-4 w-4 text-amber-400" /> },
+    { label: 'AI & SaaS Solutions', value: 'Available', icon: <Globe className="h-4 w-4 text-emerald-400" /> },
+    { label: 'Company', value: 'SAWAX', icon: <Zap className="h-4 w-4 text-violet-400" /> }
   ];
 
   return (

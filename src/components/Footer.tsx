@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
     
     // Core pages
-    const paths = ['', '/products', '/services', '/portfolio', '/blog', '/faq', '/privacy', '/terms'];
+    const paths = ['', '/products', '/services', '/portfolio', '/blog', '/faq', '/about', '/contact', '/privacy', '/terms', '/cookies', '/refunds'];
     paths.forEach(p => {
       xml += `  <url>\n    <loc>${baseUrl}${p}</loc>\n    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
     });
@@ -140,6 +140,16 @@ export const Footer: React.FC = () => {
                   <li>
                     <button onClick={() => setActiveTab('TermsAndConditions')} className="hover:text-slate-950 text-slate-500 hover:underline transition-colors text-xs text-left flex items-center gap-1 font-bold uppercase tracking-wider cursor-pointer">
                       <FileText className="h-3.5 w-3.5" /> Terms & Conditions
+                    </button>
+                  </li>
+                  <li>
+                    <button onClick={() => setActiveTab('CookiePolicy')} className="hover:text-slate-950 text-slate-500 hover:underline transition-colors text-xs text-left flex items-center gap-1 font-bold uppercase tracking-wider cursor-pointer">
+                      <Shield className="h-3.5 w-3.5" /> Cookie Policy
+                    </button>
+                  </li>
+                  <li>
+                    <button onClick={() => setActiveTab('RefundPolicy')} className="hover:text-slate-950 text-slate-500 hover:underline transition-colors text-xs text-left flex items-center gap-1 font-bold uppercase tracking-wider cursor-pointer">
+                      <FileText className="h-3.5 w-3.5" /> Refund Policy
                     </button>
                   </li>
                 </ul>

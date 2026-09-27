@@ -17,6 +17,8 @@ import { FAQSection } from './components/FAQSection';
 import { ContactSection } from './components/ContactSection';
 import { PrivacyPolicy } from './components/PrivacyPolicy';
 import { TermsAndConditions } from './components/TermsAndConditions';
+import { CookiePolicy } from './components/CookiePolicy';
+import { RefundPolicy } from './components/RefundPolicy';
 import { UserProfileSection } from './components/UserProfileSection';
 import { UpcomingProjectsSection } from './components/UpcomingProjectsSection';
 import { Product } from './types';
@@ -430,6 +432,12 @@ const AppContent: React.FC = () => {
 
         {/* TERMS & CONDITIONS ROUTE */}
         {activeTab === 'TermsAndConditions' && <TermsAndConditions />}
+
+        {/* COOKIE POLICY */}
+        {activeTab === 'CookiePolicy' && <CookiePolicy />}
+
+        {/* REFUND POLICY */}
+        {activeTab === 'RefundPolicy' && <RefundPolicy />}
 
         {/* MASTER CMS ADMIN PANEL */}
         {activeTab === 'Admin' && <AdminDashboard />}
